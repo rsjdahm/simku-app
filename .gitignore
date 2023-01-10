@@ -1,0 +1,51 @@
+/node_modules
+/public/build
+/public/hot
+/public/storage
+/storage/*.key
+# /vendor
+# .env
+.env.backup
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+auth.json
+npm-debug.log
+yarn-error.log
+/.idea
+# /.vscode
+
+
+## laragon
+bin/heidisql/tabs.ini
+bin/heidisql/Backups/*
+
+bin/laragon/laragon.log
+
+bin/sendmail/output/*
+
+bin/notepad++/config.xml
+bin/notepad++/langs.xml
+bin/notepad++/session.xml
+bin/notepad++/stylers.xml
+bin/notepad++/plugins/Config/converter.ini
+
+# data
+
+etc/apache2/sites-enabled
+etc/nginx/*
+!etc/nginx/alias
+!etc/nginx/php_upstream.conf
+
+tmp
+
+usr/tpl
+
+www/*
+!www/index.php
+data/mysql/ibtmp*
+data/mysql/ib_logfile*
+bin/apache/*/logs/*.log
+bin/apache/*/logs/*.pid
+data/mysql/*.pid
+data/mysql/*.log

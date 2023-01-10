@@ -1,0 +1,14 @@
+{
+    "open sans": {
+        "normal": "open_sans_normal_bf11512877ef2223afd06e89358ef2fc"
+    },
+    "open sans', sans-serif": {
+        "normal": "open_sans___sans_serif_normal_bf11512877ef2223afd06e89358ef2fc"
+    },
+    "arial": {
+        "normal": "arial",
+        "bold": "arialbd",
+        "bold_italic": "arialbi",
+        "italic": "ariali"
+    }
+}

@@ -1,0 +1,35 @@
+{
+    "editor.defaultFormatter": "bmewburn.vscode-intelephense-client",
+    "workbench.colorCustomizations": {
+        "activityBar.activeBackground": "#fa625e",
+        "activityBar.background": "#fa625e",
+        "activityBar.foreground": "#15202b",
+        "activityBar.inactiveForeground": "#15202b99",
+        "activityBarBadge.background": "#08f70e",
+        "activityBarBadge.foreground": "#15202b",
+        "commandCenter.border": "#e7e7e799",
+        "sash.hoverBorder": "#fa625e",
+        "statusBar.background": "#f9322c",
+        "statusBar.foreground": "#e7e7e7",
+        "statusBarItem.hoverBackground": "#fa625e",
+        "statusBarItem.remoteBackground": "#f9322c",
+        "statusBarItem.remoteForeground": "#e7e7e7",
+        "titleBar.activeBackground": "#f9322c",
+        "titleBar.activeForeground": "#e7e7e7",
+        "titleBar.inactiveBackground": "#f9322c99",
+        "titleBar.inactiveForeground": "#e7e7e799"
+    },
+    "peacock.color": "#f9322c",
+    "emmet.triggerExpansionOnTab": true, // enable tab to expanse emmet tags
+    "blade.format.enable": true,         // if you would like to enable blade format
+    // "[blade]": {
+    //     "editor.autoClosingBrackets": "always",
+    //     "editor.defaultFormatter": "onecentlin.laravel-blade",
+    //     "editor.formatOnSave": true
+    // },
+    "editor.wordWrap": "on",
+    "[blade]": {
+        "editor.defaultFormatter": "shufo.vscode-blade-formatter",
+        "editor.formatOnSave": true
+    },
+}
