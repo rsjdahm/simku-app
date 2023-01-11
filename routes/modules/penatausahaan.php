@@ -9,6 +9,7 @@ use App\Http\Controllers\Penatausahaan\PengajuanUpController;
 use App\Http\Controllers\Penatausahaan\PotonganBelanjaLsController;
 use App\Http\Controllers\Penatausahaan\PotonganBuktiGuController;
 use App\Http\Controllers\Penatausahaan\PotonganPfkController;
+use App\Http\Controllers\Penatausahaan\Sp2dController;
 use App\Http\Controllers\Penatausahaan\SpjGuController;
 use App\Http\Controllers\Penatausahaan\SpmController;
 use App\Http\Controllers\Penatausahaan\SppController;
@@ -47,4 +48,10 @@ Route::prefix('/penatausahaan')->group(function () {
     Route::get('/print-pengantar-spm/{spm}', [SpmController::class, 'printPdfPengantarSpm'])->name('spm.pdf-pengantar-spm');
     Route::get('/print-kelengkapan-spm/{spm}', [SpmController::class, 'printPdfKelengkapanSpm'])->name('spm.pdf-kelengkapan-spm');
     Route::get('/print-pernyataan-spm/{spm}', [SpmController::class, 'printPdfPernyataanSpm'])->name('spm.pdf-pernyataan-spm');
+
+    Route::resource('/sp2d', Sp2dController::class);
+    Route::get('/print-sp2d/{sp2d}', [Sp2dController::class, 'printPdfSp2d'])->name('sp2d.pdf-sp2d');
+    Route::get('/print-pengantar-sp2d/{sp2d}', [Sp2dController::class, 'printPdfPengantarSp2d'])->name('sp2d.pdf-pengantar-sp2d');
+    Route::get('/print-kelengkapan-sp2d/{sp2d}', [Sp2dController::class, 'printPdfKelengkapanSp2d'])->name('sp2d.pdf-kelengkapan-sp2d');
+    Route::get('/print-pernyataan-sp2d/{sp2d}', [Sp2dController::class, 'printPdfPernyataanSp2d'])->name('sp2d.pdf-pernyataan-sp2d');
 });

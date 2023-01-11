@@ -23,10 +23,8 @@
         td,
         th {
             vertical-align: top;
-            padding-left: 5px;
-            padding-right: 5px;
-            padding-top: 4px;
-            padding-bottom: 4px;
+            padding-left: 4px;
+            padding-right: 4px;
         }
 
         th {
@@ -41,54 +39,136 @@
             <td colspan="2">
                 <table>
                     <tr>
-                        <td style="width: 1.8cm; vertical-align: middle; padding: 0 auto;">
+                        <td style="width: 1.8cm; vertical-align: middle;">
                             <img src="{{ asset('img/logo-kaltim.png') }}" style="width: 1.5cm; margin: 10px;">
                         </td>
-                        <td style="text-align: center; vertical-align: middle; padding: 0 auto;">
+                        <td style="text-align: center; vertical-align: middle;">
                             <h3 style="margin: 0;">PEMERINTAH PROVINSI KALIMANTAN TIMUR</h3>
-                            <h2 style="margin: 0; font-size: 11pt;">SURAT PERINTAH MEMBAYAR</h2>
-                            <h2 style="margin: 0; font-size: 10pt;">UANG PERSEDIAAN (UP) BLUD</h2>
+                            <h2 style="margin: 0; font-size: 11pt;">SURAT PERINTAH PENCAIRAN DANA (BLUD)</h2>
                         </td>
                     </tr>
                 </table>
             </td>
         </tr>
         <tr style="border-bottom: 1px solid black;">
-            <td style="border-right: 1px solid black; width: 50%;">
-                <strong>Tahun Anggaran :</strong> {{ Carbon\Carbon::parse($spm->tanggal)->year }}
-            <td style="text-align: right; width: 50%;">
-                <strong>Nomor :</strong>
-                {{ $spm->nomor }}/SPM-UP/RSJDAHM/BLUD/{{ Carbon\Carbon::parse($spm->tanggal)->year }}
-            </td>
-        </tr>
-        <tr style="border-bottom: 1px solid black;">
-            <td style="border-right: 1px solid black; padding: 0;">
-                <div style="padding: 5px;">
-                    <strong>PENGGUNA ANGGARAN RSJD ATMA HUSADA MAHAKAM PROVINSI KALIMANTAN TIMUR</strong>
-                    <br />
-                    Supaya menerbitkan SP2D kepada:
-                </div>
+            <td width="50%" style="border-right: 1px solid black;">
                 <table>
                     <tr>
                         <td style="width: 30%; vertical-align: top;">
-                            SKPD/Unit Kerja
+                            No. SPM
                         </td>
                         <td style="width: 0.15cm;">
                             :
                         </td>
                         <td style="vertical-align: top;">
-                            {{ $spm->spp->pengajuan_up->sub_unit_kerja->nama }}
+                            {{ $sp2d->spm->nomor }}/SPM-UP/RSJDAHM/BLUD/{{ Carbon\Carbon::parse($sp2d->spm->tanggal)->year }}
                         </td>
                     </tr>
                     <tr>
                         <td style="vertical-align: top;">
-                            Bendahara/Pihak Ketiga
+                            Tanggal
                         </td>
                         <td>
                             :
                         </td>
                         <td style="vertical-align: top;">
+                            {{ Carbon\Carbon::parse($sp2d->spm->tanggal)->isoFormat('DD MMMM YYYY') }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="vertical-align: top;">
+                            SKPD/Unit SKPD
+                        </td>
+                        <td>
+                            :
+                        </td>
+                        <td style="vertical-align: top;">
+                            {{ $sp2d->spm->spp->pengajuan_up->sub_unit_kerja->nama }}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td width="50%">
+                <table>
+                    <tr>
+                        <td style="width: 30%; vertical-align: top;">
+                            Dari
+                        </td>
+                        <td style="width: 0.15cm;">
+                            :
+                        </td>
+                        <td style="vertical-align: top;">
+                            Pengguna Anggaran
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="vertical-align: top;">
+                            Nomor
+                        </td>
+                        <td>
+                            :
+                        </td>
+                        <td style="vertical-align: top;">
+                            {{ $sp2d->nomor }}/SP2D-UP/RSJDAHM/BLUD/2022
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="vertical-align: top;">
+                            Tanggal
+                        </td>
+                        <td>
+                            :
+                        </td>
+                        <td style="vertical-align: top;">
+                            {{ Carbon\Carbon::parse($sp2d->tanggal)->isoFormat('DD MMMM YYYY') }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="vertical-align: top;">
+                            Tahun Anggaran
+                        </td>
+                        <td>
+                            :
+                        </td>
+                        <td style="vertical-align: top;">
+                            {{ Carbon\Carbon::parse($sp2d->tanggal)->year }}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr style="border-bottom: 1px solid black;">
+            <td colspan="2">
+                <strong>PT. BPD KALTIMTARA</strong>
+                <br />
+                Hendaklah mencairkan/memindahbukukan dari BANKALTIMTARA uang sebesar Rp.
+                {{ number_format($sp2d->spm->spp->pengajuan_up->nilai, 2, ',', '.') }}
+                (<i>{{ Str::title(Terbilang::make($sp2d->spm->spp->pengajuan_up->nilai)) }} Rupiah</i>)
+            </td>
+        </tr>
+        <tr style="border-bottom: 1px solid black;">
+            <td colspan="2">
+                <table>
+                    <tr>
+                        <td style="width: 30%; vertical-align: top;">
+                            Kepada
+                        </td>
+                        <td style="width: 0.15cm;">
+                            :
+                        </td>
+                        <td style="vertical-align: top;">
                             Hari Jumadi, A.Md. / Bendahara Pengeluaran BLUD
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="vertical-align: top;">
+                            NPWP
+                        </td>
+                        <td>
+                            :
+                        </td>
+                        <td style="vertical-align: top;">
+                            953350162722000
                         </td>
                     </tr>
                     <tr>
@@ -114,76 +194,48 @@
                         </td>
                     </tr>
                     <tr>
-                        <td style="vertical-align: top;">
-                            NPWP
-                        </td>
-                        <td>
-                            :
-                        </td>
-                        <td style="vertical-align: top;">
-                            953350162722000
-                        </td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid black;">
-                        <td style="vertical-align: top;">
-                            Dasar Pembayaran
-                        </td>
-                        <td>
-                            :
-                        </td>
-                        <td style="vertical-align: top;">
-
-                        </td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid black;">
-                        <td style="vertical-align: top;">
+                        <td style="vertical-align: top;  padding-bottom: 20px;">
                             Untuk Keperluan:
                         </td>
-                        <td>
+                        <td style=" padding-bottom: 20px;">
                             :
                         </td>
-                        <td style="vertical-align: top;">
-                            {{ $spm->spp->uraian }}
-                        </td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid black;">
-                        <td colspan="3">
-                            <strong>Pembebanan pada Kode Rekening</strong>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="3" style="padding: 0;">
-                            <table>
-                                <thead>
-                                    <tr style="border-bottom: 1px solid black;">
-                                        <th width="25%" style="padding-top: 0; border-right: 1px solid black;">KODE
-                                            REKENING</th>
-                                        <th style="padding-top: 0; border-right: 1px solid black;">URAIAN</th>
-                                        <th width="25%" style="padding-top: 0;">NILAI</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr style="border-bottom: 1px solid black;">
-                                        <td style="padding: 0 auto; border-right: 1px solid black;">
-                                            {{ $spm->spp->pengajuan_up->rek_sub_rincian_objek->kode_lengkap }}</td>
-                                        <td style="padding: 0 auto; border-right: 1px solid black;">
-                                            {{ $spm->spp->pengajuan_up->rek_sub_rincian_objek->nama }}</td>
-                                        <td style="padding: 0 auto; text-align: right;">
-                                            {{ number_format($spm->spp->pengajuan_up->nilai, 2, ',', '.') }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2"
-                                            style="padding: 0 auto; border-right: 1px solid black; font-weight: bold; text-align: center;">
-                                            Jumlah</td>
-                                        <td style="padding: 0 auto; font-weight: bold; text-align: right;">
-                                            {{ number_format($spm->spp->pengajuan_up->nilai, 2, ',', '.') }}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <td style="vertical-align: top;  padding-bottom: 20px;">
+                            {{ $sp2d->spm->spp->uraian }}
                         </td>
                     </tr>
                 </table>
-            <td style="padding: 0;">
+            </td>
+        </tr>
+        <tr style="border-bottom: 1px solid black;">
+            <td colspan="2" style="padding: 0;">
+                <table>
+                    <thead>
+                        <tr style="border-bottom: 1px solid black;">
+                            <th width="25%" style="padding-top: 0; border-right: 1px solid black;">KODE
+                                REKENING</th>
+                            <th style="padding-top: 0; border-right: 1px solid black;">URAIAN</th>
+                            <th width="25%" style="padding-top: 0;">NILAI</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid black;">
+                            <td style="padding: 0 auto; border-right: 1px solid black;">
+                                {{ $sp2d->spm->spp->pengajuan_up->rek_sub_rincian_objek->kode_lengkap }}</td>
+                            <td style="padding: 0 auto; border-right: 1px solid black;">
+                                {{ $sp2d->spm->spp->pengajuan_up->rek_sub_rincian_objek->nama }}</td>
+                            <td style="padding: 0 auto; text-align: right;">
+                                {{ number_format($sp2d->spm->spp->pengajuan_up->nilai, 2, ',', '.') }}</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid black;">
+                            <td colspan="2"
+                                style="padding: 0 auto; border-right: 1px solid black; font-weight: bold; text-align: center;">
+                                Jumlah</td>
+                            <td style="padding: 0 auto; font-weight: bold; text-align: right;">
+                                {{ number_format($sp2d->spm->spp->pengajuan_up->nilai, 2, ',', '.') }}</td>
+                        </tr>
+                    </tbody>
+                </table>
                 <table>
                     <tr style="border-bottom: 1px solid black;">
                         <td colspan="3">
@@ -217,7 +269,7 @@
                                     <tr style="border-bottom: 1px solid black;">
                                         <td colspan="3" style="font-style: italic; padding: 0 auto;">Informasi (tidak
                                             mengurangi
-                                            jumlah pembayaran SPM)</td>
+                                            jumlah pembayaran SP2D)</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -249,7 +301,7 @@
                                 <thead>
                                     <tr style="border-bottom: 1px solid black;">
                                         <th colspan="3" style="text-align: left; padding-top: 0;">
-                                            SPM yang Dibayarkan
+                                            SP2D yang Dibayarkan
                                         </th>
                                     </tr>
                                 </thead>
@@ -259,7 +311,7 @@
                                             Jumlah yang Diminta
                                         </td>
                                         <td style="padding: 0 auto; text-align: right; border-right: 1px solid black;">
-                                            {{ number_format($spm->spp->pengajuan_up->nilai, 2, ',', '.') }}
+                                            {{ number_format($sp2d->spm->spp->pengajuan_up->nilai, 2, ',', '.') }}
                                         </td>
                                         <td width="25%" style="padding: 0 auto; text-align: right;"></td>
                                     </tr>
@@ -277,7 +329,7 @@
                                             Jumlah yang Dibayarkan
                                         </td>
                                         <td style="padding: 0 auto; text-align: right;">
-                                            {{ number_format($spm->spp->pengajuan_up->nilai, 2, ',', '.') }}</td>
+                                            {{ number_format($sp2d->spm->spp->pengajuan_up->nilai, 2, ',', '.') }}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -290,7 +342,8 @@
                                         :
                                     </td>
                                     <td style="vertical-align: top;">
-                                        <i>{{ Str::title(Terbilang::make($spm->spp->pengajuan_up->nilai)) }} Rupiah</i>
+                                        <i>{{ Str::title(Terbilang::make($sp2d->spm->spp->pengajuan_up->nilai)) }}
+                                            Rupiah</i>
                                     </td>
                                 </tr>
                             </table>
@@ -299,54 +352,28 @@
                 </table>
             </td>
         </tr>
-        <tr style="border-bottom: 1px solid black;">
-            <td style="border-right: 1px solid black;">
-                <table>
-                    <tr>
-                        <td style="width: 30%; vertical-align: top; font-weight: bold; padding-left: 0;">
-                            Jumlah SPP yang diminta
-                        </td>
-                        <td style="width: 0.15cm; font-weight: bold;">
-                            :
-                        </td>
-                        <td style="vertical-align: top;">
-                            <strong>Rp {{ number_format($spm->spp->pengajuan_up->nilai, 2, ',', '.') }}</strong>
-                            <br />
-                            <i>{{ Str::title(Terbilang::make($spm->spp->pengajuan_up->nilai)) }} Rupiah</i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="vertical-align: top; font-weight: bold; padding-left: 0;">
-                            Nomor dan Tanggal SPP
-                        </td>
-                        <td style="font-weight: bold;">
-                            :
-                        </td>
-                        <td style="vertical-align: top;">
-                            {{ $spm->spp->nomor }}/SPP-UP/RSJDAHM/BLUD/{{ Terbilang::roman(Carbon\Carbon::parse($spm->spp->tanggal)->month) }}/{{ Carbon\Carbon::parse($spm->spp->tanggal)->year }}
-                            <br />
-                            {{ Carbon\Carbon::parse($spm->spp->tanggal)->isoFormat('DD MMMM YYYY') }}
-                        </td>
-                    </tr>
-                </table>
+        <tr>
+            <td style="padding-top: 30px;">
+                <strong>Lembar Asli</strong> : Untuk Pengguna Anggaran
+                <br />
+                <strong>Salinan 1</strong> : Untuk Kuasa Pengguna Anggaran
+                <br />
+                <strong>Salinan 2</strong> : Untuk Arsip
+                <br />
+                <strong>Salinan 3</strong> : Untuk Pihak Ketiga
             </td>
-            <td style="text-align: center">
-                Samarinda, {{ Carbon\Carbon::parse($spm->spp->tanggal)->isoFormat('DD MMMM YYYY') }}
+            <td style="padding-top: 30px; text-align: center;">
+                Samarinda, {{ Carbon\Carbon::parse($sp2d->tanggal)->translatedFormat('d F Y') }}
                 <br />
-                Kuasa Pengguna Anggaran BLUD
-                <br />
-                <br />
+                Pengguna Anggaran
                 <br />
                 <br />
                 <br />
-                <strong><u>Hadi Machbudiansyah, S.E., M.M.</u></strong>
                 <br />
-                NIP. 19750911 199402 1 001
-            </td>
-        </tr>
-        <tr style="border-bottom: 1px solid black;">
-            <td colspan="2" style="text-align: center">
-                <i>SPM ini sah apabila telah ditandatangani dan distempel oleh Kepala SKPD</i>
+                <br />
+                <strong><u>dr. Indah Puspitasari, MARS.</u></strong>
+                <br />
+                NIP. 19670530 199803 2 003
             </td>
         </tr>
     </table>

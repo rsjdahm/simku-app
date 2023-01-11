@@ -36,7 +36,7 @@
             </a>
         </li>
         <li>
-            <a data-load="#page" data-menu="item">
+            <a data-load="#page" data-menu="item" href="{{ route('sp2d.index') }}">
                 SP2D
             </a>
         </li>

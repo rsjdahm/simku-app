@@ -7,17 +7,18 @@ use App\Enums\Penatausahaan\StatusPosting;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Spm extends Model
+class Sp2d extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'spm';
+    protected $table = 'sp2d';
 
     protected $fillable = [
-        'spp_id',
+        'spm_id',
         'nomor',
         'tanggal',
-        'status'
+        'status',
+        'nomor_cek'
     ];
 
     protected $casts = [
@@ -25,16 +26,11 @@ class Spm extends Model
     ];
 
     protected $with = [
-        'spp',
+        'spm',
     ];
 
-    public function spp()
+    public function spm()
     {
-        return $this->belongsTo(Spp::class);
-    }
-
-    public function sp2d()
-    {
-        return $this->hasOne(Sp2d::class);
+        return $this->belongsTo(Spm::class);
     }
 }
