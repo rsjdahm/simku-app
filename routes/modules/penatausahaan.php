@@ -10,6 +10,7 @@ use App\Http\Controllers\Penatausahaan\PotonganBelanjaLsController;
 use App\Http\Controllers\Penatausahaan\PotonganBuktiGuController;
 use App\Http\Controllers\Penatausahaan\PotonganPfkController;
 use App\Http\Controllers\Penatausahaan\SpjGuController;
+use App\Http\Controllers\Penatausahaan\SpmController;
 use App\Http\Controllers\Penatausahaan\SppController;
 use Illuminate\Support\Facades\Route;
 
@@ -40,4 +41,10 @@ Route::prefix('/penatausahaan')->group(function () {
     Route::get('/print-pengantar-spp/{spp}', [SppController::class, 'printPdfPengantarSpp'])->name('spp.pdf-pengantar-spp');
     Route::get('/print-kelengkapan-spp/{spp}', [SppController::class, 'printPdfKelengkapanSpp'])->name('spp.pdf-kelengkapan-spp');
     Route::get('/print-pernyataan-spp/{spp}', [SppController::class, 'printPdfPernyataanSpp'])->name('spp.pdf-pernyataan-spp');
+
+    Route::resource('/spm', SpmController::class);
+    Route::get('/print-spm/{spm}', [SpmController::class, 'printPdfSpm'])->name('spm.pdf-spm');
+    Route::get('/print-pengantar-spm/{spm}', [SpmController::class, 'printPdfPengantarSpm'])->name('spm.pdf-pengantar-spm');
+    Route::get('/print-kelengkapan-spm/{spm}', [SpmController::class, 'printPdfKelengkapanSpm'])->name('spm.pdf-kelengkapan-spm');
+    Route::get('/print-pernyataan-spm/{spm}', [SpmController::class, 'printPdfPernyataanSpm'])->name('spm.pdf-pernyataan-spm');
 });

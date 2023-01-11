@@ -31,7 +31,7 @@
     </a>
     <ul class="sub-menu">
         <li>
-            <a data-load="#page" data-menu="item">
+            <a data-load="#page" data-menu="item" href="{{ route('spm.index') }}">
                 SPM
             </a>
         </li>

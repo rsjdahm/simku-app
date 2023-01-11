@@ -135,7 +135,7 @@
                     </tr>
                     <tr>
                         <td>
-                            7. Dasar Pengeluaran
+                            8. Dasar Pengeluaran
                         </td>
                         <td>
                             :

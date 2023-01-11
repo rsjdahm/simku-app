@@ -26,7 +26,7 @@ class SppController extends Controller
 
             return DataTables::of($data)
                 ->addIndexColumn()
-                ->addColumn('action', '<div class="btn-group btn-group-sm" role="group"><button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown"><i class="fas fa-wrench"></i></button><div class="dropdown-menu"><a data-load="modal" title="Edit Spp" href="{{ route("spp.edit", $id) }}" class="dropdown-item">Edit</a><a data-action="delete" href="{{ route("spp.destroy", $id) }}" class="dropdown-item text-danger">Hapus</a></div></div>')
+                ->addColumn('action', '<div class="btn-group btn-group-sm" role="group"><button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown"><i class="fas fa-wrench"></i></button><div class="dropdown-menu"><a data-load="modal" data-size="lg" title="Edit Spp" href="{{ route("spp.edit", $id) }}" class="dropdown-item">Edit</a><a data-action="delete" href="{{ route("spp.destroy", $id) }}" class="dropdown-item text-danger">Hapus</a></div></div>')
                 ->editColumn('jenis', function ($i) {
                     switch ($i->jenis) {
                         case JenisPengeluaran::UP:
@@ -123,7 +123,10 @@ class SppController extends Controller
     public function edit(Spp $spp)
     {
         return view('pages.penatausahaan.spp.edit', [
-            'spp' => $spp
+            'spp' => $spp,
+            'pengajuan_up' => PengajuanUp::where('status', StatusPosting::Posting)->orderBy('nomor', 'desc')->get(),
+            'spj_gu' => SpjGu::where('status', StatusPosting::Posting)->orderBy('nomor', 'desc')->get(),
+            'belanja_ls' => BelanjaLs::where('status', StatusPosting::Posting)->orderBy('nomor', 'desc')->get()
         ]);
     }
 

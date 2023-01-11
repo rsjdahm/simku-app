@@ -35,6 +35,11 @@ class Spp extends Model
         'belanja_ls',
     ];
 
+    public function spm()
+    {
+        return $this->hasOne(Spm::class);
+    }
+
     public function pengajuan_up()
     {
         return $this->belongsTo(PengajuanUp::class);
