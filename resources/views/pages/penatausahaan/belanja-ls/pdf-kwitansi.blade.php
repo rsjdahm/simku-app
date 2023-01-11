@@ -38,7 +38,7 @@
                         <td>2023</td>
                     </tr>
                     <tr>
-                        <td>Nomor BKU</td>
+                        <td>Nomor</td>
                         <td>:</td>
                         <td>
                             {!! $belanja_ls->nomor ?? '.............................' !!}

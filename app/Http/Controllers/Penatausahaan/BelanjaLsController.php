@@ -55,15 +55,14 @@ class BelanjaLsController extends Controller
                 }))
                 ->addIndexColumn()
                 ->addColumn('action', function ($i) {
-                    return '<div class="btn-group btn-group-sm" role="group"><button type="button" title="Aksi" class="btn btn-warning dropdown-toggle" data-toggle="dropdown"><i class="fas fa-wrench"></i></button><div class="dropdown-menu"><a data-load="modal" data-size="lg" title="Edit Bukti GU" href="' . route("belanja-ls.edit", $i->id) . '" class="dropdown-item">Edit</a><a data-action="delete" href="' . route("belanja-ls.destroy", $i->id) . '" class="dropdown-item text-danger">Hapus</a></div></div>';
+                    return '<div class="btn-group btn-group-sm" role="group"><button type="button" title="Aksi" class="btn btn-warning dropdown-toggle" data-toggle="dropdown"><i class="fas fa-wrench"></i></button><div class="dropdown-menu"><a data-load="modal" data-size="lg" title="Edit Belanja LS" href="' . route("belanja-ls.edit", $i->id) . '" class="dropdown-item">Edit</a><a data-action="delete" href="' . route("belanja-ls.destroy", $i->id) . '" class="dropdown-item text-danger">Hapus</a></div></div>';
                 })
                 ->addColumn('action2', function ($i) {
-                    $action = '<div class="btn-group btn-group-sm" role="group"><button type="button" title="Tambah Data Pendukung" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><i class="fas fa-plus"></i></button><div class="dropdown-menu"><a data-load="modal" data-size="lg" title="Potongan pada Bukti GU Nomor: ' . $i->nomor . '" href="' . route('potongan-belanja-ls.index', ['belanja_ls_id' => $i->id]) . '" class="dropdown-item">Potongan (' . $i->potongan_belanja_ls_count . ')</a></div></div>';
+                    $action = '<div class="btn-group btn-group-sm" role="group"><button type="button" title="Tambah Data Pendukung" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><i class="fas fa-plus"></i></button><div class="dropdown-menu"><a data-load="modal" data-size="lg" title="Potongan pada Belanja LS Nomor: ' . $i->nomor . '" href="' . route('potongan-belanja-ls.index', ['belanja_ls_id' => $i->id]) . '" class="dropdown-item">Potongan (' . $i->potongan_belanja_ls_count . ')</a></div></div>';
 
                     // if ($i->status == StatusPosting::Posting) :
                     $action .= '<div class="btn-group btn-group-sm ml-1" role="group"><button type="button" title="Cetak Dokumen" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"><i class="fas fa-print"></i></button><div class="dropdown-menu">
-                        <a data-load="modal-pdf" title="Cetak Surat Bukti Pengeluaran/Belanja Bukti GU Nomor: ' . $i->nomor . '" href="' . route("belanja-ls.pdf-sbpb", $i->id) . '" class="dropdown-item">SBPB</a>
-                        <a data-load="modal-pdf" title="Cetak Kwitansi Bukti GU Nomor: ' . $i->nomor . '" href="' . route("belanja-ls.pdf-kwitansi", $i->id) . '" class="dropdown-item">Kwitansi</a>
+                        <a data-load="modal-pdf" title="Cetak Kwitansi Belanja LS Nomor: ' . $i->nomor . '" href="' . route("belanja-ls.pdf-kwitansi", $i->id) . '" class="dropdown-item">Kwitansi</a>
                         </div></div>';
                     // endif;
                     return $action;
@@ -250,16 +249,6 @@ class BelanjaLsController extends Controller
         $belanja_ls->delete();
 
         return response()->json(['message' => 'Data Belanja LS berhasil dihapus.']);
-    }
-
-    public function printPdfSbpb(BelanjaLs $belanja_ls)
-    {
-
-        return Pdf::loadView('pages.penatausahaan.belanja-ls.pdf-sbpb', compact(
-            'belanja_ls',
-        ))
-            ->setPaper('a4', 'potrait')
-            ->stream('SBPB.pdf');
     }
 
     public function printPdfKwitansi(BelanjaLs $belanja_ls)
