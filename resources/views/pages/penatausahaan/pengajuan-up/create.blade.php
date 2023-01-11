@@ -1,4 +1,4 @@
-<form method="post" action="{{ route('penetapan-up.store') }}">
+<form method="post" action="{{ route('pengajuan-up.store') }}">
     @csrf
     <div class="row">
         <div class="col-md-6">
@@ -60,7 +60,7 @@
 </form>
 
 <script>
-    $("form[action='{{ route('penetapan-up.store') }}']").on("submit", function(event) {
+    $("form[action='{{ route('pengajuan-up.store') }}']").on("submit", function(event) {
         event.preventDefault();
         const form = $(this);
         const data = new FormData($(this)[0]);
