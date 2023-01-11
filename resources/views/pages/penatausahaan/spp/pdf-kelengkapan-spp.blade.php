@@ -6,7 +6,7 @@
         @page {
             margin: 1.25cm 1.55cm;
             font-family: 'Arial';
-            font-size: 8pt;
+            font-size: 9pt;
             font-weight: normal;
         }
 
@@ -19,9 +19,6 @@
 </head>
 
 <body>
-    SPP-1
-    <br />
-    *) Coret yang tidak perlu
     <h2 style="text-align: center;">PENELITIAN KELENGKAPAN DOKUMEN SPP</h2>
     <br />
     <strong>1 SPP-{{ $spp->jenis }} BLUD</strong>
@@ -110,7 +107,7 @@
     <br />
     <br />
     <br />
-    <table>
+    <table style="line-height: 8pt;">
         <tr>
             <td style="width: 2.5cm;">Lembar Asli</td>
             <td style="width: 0.25cm;">:</td>

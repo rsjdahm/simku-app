@@ -37,6 +37,7 @@ Route::prefix('/penatausahaan')->group(function () {
 
     Route::resource('/spp', SppController::class);
     Route::get('/print-spp/{spp}', [SppController::class, 'printPdfSpp'])->name('spp.pdf-spp');
+    Route::get('/print-pengantar-spp/{spp}', [SppController::class, 'printPdfPengantarSpp'])->name('spp.pdf-pengantar-spp');
     Route::get('/print-kelengkapan-spp/{spp}', [SppController::class, 'printPdfKelengkapanSpp'])->name('spp.pdf-kelengkapan-spp');
     Route::get('/print-pernyataan-spp/{spp}', [SppController::class, 'printPdfPernyataanSpp'])->name('spp.pdf-pernyataan-spp');
 });

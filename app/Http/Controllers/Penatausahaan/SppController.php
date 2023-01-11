@@ -6,6 +6,7 @@ use App\Enums\Penatausahaan\JenisPengeluaran;
 use App\Enums\Penatausahaan\StatusPosting;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Penatausahaan\SppRequest;
+use App\Models\Anggaran\BelanjaRkaPd;
 use App\Models\Penatausahaan\BelanjaLs;
 use App\Models\Penatausahaan\PengajuanUp;
 use App\Models\Penatausahaan\SpjGu;
@@ -59,9 +60,10 @@ class SppController extends Controller
                 })
                 ->addColumn('action2', function ($i) {
                     return '<div class="btn-group btn-group-sm ml-1" role="group"><button type="button" title="Cetak Dokumen" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"><i class="fas fa-print"></i></button><div class="dropdown-menu">
-                    <a data-load="modal-pdf" title="Cetak SPP-' . $i->jenis->value . ' Nomor: ' . $i->nomor . '" href="' . route("spp.pdf-spp", $i->id) . '" class="dropdown-item">SPP-' . $i->jenis->value . '</a>
-                    <a data-load="modal-pdf" title="Cetak Form Penelitian Kelengkapan SPP-' . $i->jenis->value . ' Nomor: ' . $i->nomor . '" href="' . route("spp.pdf-kelengkapan-spp", $i->id) . '" class="dropdown-item">Form Penelitian Kelengkapan SPP-' . $i->jenis->value . '</a>
-                    <a data-load="modal-pdf" title="Cetak Surat Pernyataan Pengajuan SPP-' . $i->jenis->value . ' Nomor: ' . $i->nomor . '" href="' . route("spp.pdf-pernyataan-spp", $i->id) . '" class="dropdown-item">Surat Pernyataan SPP-' . $i->jenis->value . '</a>
+                    <a data-load="modal-pdf" title="Cetak Form Penelitian Kelengkapan SPP-' . $i->jenis->value . ' Nomor: ' . $i->nomor . '" href="' . route("spp.pdf-kelengkapan-spp", $i->id) . '" class="dropdown-item">1. Form Kelengkapan SPP-' . $i->jenis->value . '</a>
+                    <a data-load="modal-pdf" title="Cetak SPP-' . $i->jenis->value . ' Nomor: ' . $i->nomor . '" href="' . route("spp.pdf-pengantar-spp", $i->id) . '" class="dropdown-item">2. Surat Pengantar SPP-' . $i->jenis->value . '</a>
+                    <a data-load="modal-pdf" title="Cetak SPP-' . $i->jenis->value . ' Nomor: ' . $i->nomor . '" href="' . route("spp.pdf-spp", $i->id) . '" class="dropdown-item">3. SPP-' . $i->jenis->value . '</a>
+                    <a data-load="modal-pdf" title="Cetak Surat Pernyataan Pengajuan SPP-' . $i->jenis->value . ' Nomor: ' . $i->nomor . '" href="' . route("spp.pdf-pernyataan-spp", $i->id) . '" class="dropdown-item">4. Surat Pernyataan SPP-' . $i->jenis->value . ' (KPA)</a>
                     </div></div>';
                 })
                 ->rawColumns(['action', 'action2', 'jenis', 'status'])
@@ -105,9 +107,9 @@ class SppController extends Controller
     public function create()
     {
         return view('pages.penatausahaan.spp.create', [
-            'pengajuan_up' => PengajuanUp::doesntHave('spp')->orderBy('nomor', 'desc')->get(),
-            'spj_gu' => SpjGu::doesntHave('spp')->orderBy('nomor', 'desc')->get(),
-            'belanja_ls' => BelanjaLs::doesntHave('spp')->orderBy('nomor', 'desc')->get()
+            'pengajuan_up' => PengajuanUp::doesntHave('spp')->where('status', StatusPosting::Posting)->orderBy('nomor', 'desc')->get(),
+            'spj_gu' => SpjGu::doesntHave('spp')->where('status', StatusPosting::Posting)->orderBy('nomor', 'desc')->get(),
+            'belanja_ls' => BelanjaLs::doesntHave('spp')->where('status', StatusPosting::Posting)->orderBy('nomor', 'desc')->get()
         ]);
     }
 
@@ -181,6 +183,29 @@ class SppController extends Controller
         ))
             ->setPaper('a4', 'potrait')
             ->stream('Surat Pernyataan Pengajuan SPP.pdf');
+    }
+
+    public function printPdfPengantarSpp(Spp $spp)
+    {
+
+        switch ($spp->jenis) {
+            case JenisPengeluaran::UP:
+                $view = 'pages.penatausahaan.spp.pdf-pengantar-spp-up';
+                break;
+                // case JenisPengeluaran::GU:
+                //     $view = 'pages.penatausahaan.spp.pdf-spp-gu';
+                //     break;
+                // case JenisPengeluaran::LS:
+                //     $view = 'pages.penatausahaan.spp.pdf-spp-ls';
+                //     break;
+        }
+
+        return Pdf::loadView($view, [
+            'spp' => $spp,
+            'sum_belanja_rka_pd' => BelanjaRkaPd::get()->sum('nilai'),
+        ])
+            ->setPaper('a4', 'potrait')
+            ->stream('Surat Pengantar SPP.pdf');
     }
 
     public function printPdfKelengkapanSpp(Spp $spp)
