@@ -49,3 +49,4 @@ bin/apache/*/logs/*.log
 bin/apache/*/logs/*.pid
 data/mysql/*.pid
 data/mysql/*.log
+.env
