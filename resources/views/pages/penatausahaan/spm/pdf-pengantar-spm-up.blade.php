@@ -55,10 +55,13 @@
     </table>
     <br />
     <div style="margin-left: 65%;">
+        Samarinda, {{ Carbon\Carbon::parse($spm->tanggal)->isoFormat('DD MMMM YYYY') }}
+        <br />
+        <br />
         Kepada
         <br />
-        <div style="text-indent: -0.7cm;">Yth. Pengguna Anggaran BLUD</div>
-        RSJD Atma Husada Mahakam
+        <div style="text-indent: -0.7cm;">Yth. Pengguna Anggaran</div>
+        {{ $spm->spp->pengajuan_up->sub_unit_kerja->nama }}
         <br />
         di -
         <br />
@@ -104,10 +107,7 @@
         Demikian disampaikan, atas kerjasamanya diucapkan terima kasih.
     </p>
     <br />
-    <br />
     <div style="text-align: center; margin-left: 60%;">
-        Samarinda, {{ Carbon\Carbon::parse($spm->tanggal)->isoFormat('DD MMMM YYYY') }}
-        <br />
         Kuasa Pengguna Anggaran BLUD
         <br />
         <br />

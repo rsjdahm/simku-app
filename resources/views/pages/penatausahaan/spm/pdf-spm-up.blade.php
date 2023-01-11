@@ -64,7 +64,7 @@
         <tr style="border-bottom: 1px solid black;">
             <td style="border-right: 1px solid black; padding: 0;">
                 <div style="padding: 5px;">
-                    <strong>PENGGUNA ANGGARAN BLUD RSJD ATMA HUSADA MAHAKAM PROVINSI KALIMANTAN TIMUR</strong>
+                    <strong>PENGGUNA ANGGARAN {{ Str::upper($spm->spp->pengajuan_up->sub_unit_kerja->nama) }}</strong>
                     <br />
                     Supaya menerbitkan SP2D kepada:
                 </div>
@@ -187,7 +187,7 @@
                 <table>
                     <tr style="border-bottom: 1px solid black;">
                         <td colspan="3">
-                            <strong>Potongan-Potongan</strong>
+                            <strong>Potongan-Potongan:</strong>
                         </td>
                     </tr>
                     <tr>
@@ -215,9 +215,9 @@
                                             {{ number_format(0, 2, ',', '.') }}</td>
                                     </tr>
                                     <tr style="border-bottom: 1px solid black;">
-                                        <td colspan="3" style="font-style: italic; padding: 0 auto;">Informasi (tidak
-                                            mengurangi
-                                            jumlah pembayaran SPM)</td>
+                                        <td colspan="3" style="padding: 0 auto;">Informasi: <i>(tidak
+                                                mengurangi
+                                                jumlah pembayaran SPM)</i></td>
                                     </tr>
                                 </tbody>
                             </table>

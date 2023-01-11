@@ -27,10 +27,10 @@ class PengajuanUpController extends Controller
                 ->editColumn('status', function ($i) {
                     switch ($i->status) {
                         case StatusPosting::Posting:
-                            $badge = '<span class="badge badge-success">' . StatusPosting::Posting->value . '</span>';
+                            $badge = '<span class="badge badge-success"><i class="mr-1 fas fa-check"></i> Posting</span>';
                             break;
                         case StatusPosting::BelumPosting:
-                            $badge = '<span class="badge badge-warning">' . StatusPosting::BelumPosting->value . '</span>';
+                            $badge = '<span class="badge badge-warning"><i class="mr-1 fas fa-exclamation"></i> Draft</span>';
                             break;
                         default:
                             $badge = '<span class="badge badge-secondary">-</span>';
@@ -38,16 +38,22 @@ class PengajuanUpController extends Controller
                     }
                     return $badge;
                 })
-                ->rawColumns(['action', 'status'])
+                ->addColumn('action2', function ($i) {
+                    return '<div class="btn-group btn-group-sm ml-1" role="group"><button type="button" title="Cetak Dokumen" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"><i class="fas fa-print"></i></button><div class="dropdown-menu">
+                    <a data-load="modal-pdf" title="Cetak Surat Pengajuan UP Nomor: ' . $i->nomor . '" href="' . route("pengajuan-up.pdf-pengajuan-up", $i->id) . '" class="dropdown-item">Surat Pengajuan/Permintaan</a>
+                    </div></div>';
+                })
+                ->rawColumns(['action', 'action2', 'status'])
                 ->toJson();
         else :
 
             $table = $builder->ajax(route('pengajuan-up.index'))
                 ->addAction(['title' => '', 'style' => 'width: 1%;', 'orderable' => false])
                 ->addColumn(['data' => 'tanggal', 'title' => 'Tanggal', 'class' => 'text-center', 'width' => '1%', 'defaultContent' => '-'])
-                ->addColumn(['data' => 'nomor', 'title' => 'Nomor Pengajuan', 'class' => 'text-center font-weight-bold', 'defaultContent' => '-'])
+                ->addColumn(['data' => 'nomor', 'title' => 'Nomor Pengajuan', 'class' => 'text-center', 'defaultContent' => '-'])
                 ->addColumn(['data' => 'uraian', 'title' => 'Uraian', 'defaultContent' => '-'])
                 ->addColumn(['data' => 'nilai', 'title' => 'Nilai', 'class' => 'text-right', 'defaultContent' => '-'])
+                ->addAction(['data' => 'action2', 'title' => '', 'class' => 'text-nowrap', 'style' => 'width: 1%;', 'orderable' => false])
                 ->addColumn(['data' => 'status', 'title' => 'Status', 'class' => 'text-center', 'style' => 'width: 1%;', 'defaultContent' => '-'])
                 ->parameters([
                     'order' => [
@@ -115,5 +121,14 @@ class PengajuanUpController extends Controller
         $pengajuan_up->delete();
 
         return response()->json(['message' => 'Pengajuan UP berhasil dihapus.']);
+    }
+
+    public function printPdfPengajuanUp(PengajuanUp $pengajuan_up)
+    {
+        return Pdf::loadView('pages.penatausahaan.pengajuan-up.pdf-pengajuan-up', compact(
+            'pengajuan_up',
+        ))
+            ->setPaper('a4', 'potrait')
+            ->stream('SPM.pdf');
     }
 }

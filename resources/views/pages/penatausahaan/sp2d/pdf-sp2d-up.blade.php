@@ -139,9 +139,9 @@
         </tr>
         <tr style="border-bottom: 1px solid black;">
             <td colspan="2">
-                <strong>PT. BPD KALTIMTARA</strong>
+                <strong>BANKALTIMTARA</strong>
                 <br />
-                Hendaklah mencairkan/memindahbukukan dari BANKALTIMTARA uang sebesar Rp.
+                Hendaklah mencairkan/memindahbukukan dari baki Rekening Nomor 0011536760 uang sebesar Rp.
                 {{ number_format($sp2d->spm->spp->pengajuan_up->nilai, 2, ',', '.') }}
                 (<i>{{ Str::title(Terbilang::make($sp2d->spm->spp->pengajuan_up->nilai)) }} Rupiah</i>)
             </td>
@@ -184,7 +184,7 @@
                     </tr>
                     <tr>
                         <td style="vertical-align: top;">
-                            Nama Bank
+                            Bank Penerima
                         </td>
                         <td>
                             :
@@ -195,7 +195,7 @@
                     </tr>
                     <tr>
                         <td style="vertical-align: top;  padding-bottom: 20px;">
-                            Untuk Keperluan:
+                            Keperluan Untuk:
                         </td>
                         <td style=" padding-bottom: 20px;">
                             :
@@ -229,8 +229,8 @@
                         </tr>
                         <tr style="border-bottom: 1px solid black;">
                             <td colspan="2"
-                                style="padding: 0 auto; border-right: 1px solid black; font-weight: bold; text-align: center;">
-                                Jumlah</td>
+                                style="padding: 0 auto; border-right: 1px solid black; font-weight: bold; text-align: right;">
+                                JUMLAH</td>
                             <td style="padding: 0 auto; font-weight: bold; text-align: right;">
                                 {{ number_format($sp2d->spm->spp->pengajuan_up->nilai, 2, ',', '.') }}</td>
                         </tr>
@@ -239,7 +239,7 @@
                 <table>
                     <tr style="border-bottom: 1px solid black;">
                         <td colspan="3">
-                            <strong>Potongan-Potongan</strong>
+                            <strong>Potongan-Potongan:</strong>
                         </td>
                     </tr>
                     <tr>
@@ -261,15 +261,17 @@
                                     </tr>
                                     <tr style="border-bottom: 1px solid black;">
                                         <td colspan="2"
-                                            style="padding: 0 auto; border-right: 1px solid black; text-align: center;">
-                                            Jumlah</td>
+                                            style="padding: 0 auto; border-right: 1px solid black; text-align: right;">
+                                            JUMLAH</td>
                                         <td style="padding: 0 auto; text-align: right;">
                                             {{ number_format(0, 2, ',', '.') }}</td>
                                     </tr>
                                     <tr style="border-bottom: 1px solid black;">
-                                        <td colspan="3" style="font-style: italic; padding: 0 auto;">Informasi (tidak
-                                            mengurangi
-                                            jumlah pembayaran SP2D)</td>
+                                        <td colspan="3" style="padding: 0 auto;">Informasi:
+                                            <i>(tidak
+                                                mengurangi
+                                                jumlah pembayaran SP2D)</i>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -290,62 +292,68 @@
                                     </tr>
                                     <tr style="border-bottom: 1px solid black;">
                                         <td colspan="2"
-                                            style="padding: 0 auto; border-right: 1px solid black; text-align: center;">
-                                            Jumlah</td>
+                                            style="padding: 0 auto; border-right: 1px solid black; text-align: right;">
+                                            JUMLAH</td>
                                         <td style="padding: 0 auto; text-align: right;">
                                             {{ number_format(0, 2, ',', '.') }}</td>
                                     </tr>
                                 </tbody>
                             </table>
-                            <table>
+                            <table style="width: 60%">
                                 <thead>
-                                    <tr style="border-bottom: 1px solid black;">
-                                        <th colspan="3" style="text-align: left; padding-top: 0;">
+                                    <tr>
+                                        <th colspan="2" style="text-align: left; padding-top: 0;">
+                                            <br />
                                             SP2D yang Dibayarkan
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr style="border-bottom: 1px solid black;">
-                                        <td width="25%" style="padding: 0 auto; border-right: 1px solid black;">
+                                    <tr>
+                                        <td style="padding: 0 auto;">
                                             Jumlah yang Diminta
                                         </td>
-                                        <td style="padding: 0 auto; text-align: right; border-right: 1px solid black;">
+                                        <td style="width: 0.15cm;">
+                                            Rp
+                                        </td>
+                                        <td width="25%" style="padding: 0 auto; text-align: right;">
                                             {{ number_format($sp2d->spm->spp->pengajuan_up->nilai, 2, ',', '.') }}
                                         </td>
-                                        <td width="25%" style="padding: 0 auto; text-align: right;"></td>
                                     </tr>
-                                    <tr style="border-bottom: 1px solid black;">
-                                        <td style="padding: 0 auto; border-right: 1px solid black;">
+                                    <tr>
+                                        <td style="padding: 0 auto;">
                                             Jumlah Potongan
                                         </td>
-                                        <td style="padding: 0 auto; text-align: right; border-right: 1px solid black;">
-                                            {{ number_format(0, 2, ',', '.') }}
-                                        </td>
-                                        <td style="padding: 0 auto; text-align: right;"></td>
-                                    </tr>
-                                    <tr style="border-bottom: 1px solid black;">
-                                        <td colspan="2" style="padding: 0 auto; border-right: 1px solid black;">
-                                            Jumlah yang Dibayarkan
+                                        <td style="width: 0.15cm;">
+                                            Rp
                                         </td>
                                         <td style="padding: 0 auto; text-align: right;">
-                                            {{ number_format($sp2d->spm->spp->pengajuan_up->nilai, 2, ',', '.') }}</td>
+                                            {{ number_format(0, 2, ',', '.') }}
+                                        </td>
                                     </tr>
+                                    <tr style="font-weight: bold;">
+                                        <td style="padding: 0 auto;">
+                                            Jumlah yang Dibayarkan
+                                        </td>
+                                        <td style="width: 0.15cm;">
+                                            Rp
+                                        </td>
+                                        <td style="padding: 0 auto; text-align: right;">
+                                            {{ number_format($sp2d->spm->spp->pengajuan_up->nilai, 2, ',', '.') }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 25%; vertical-align: top; font-weight: bold;">
+                                            Uang Sejumlah
+                                            <br />
+                                        </td>
+                                        <td colspan="2" style="vertical-align: top;">
+                                            <i>{{ Str::title(Terbilang::make($sp2d->spm->spp->pengajuan_up->nilai)) }}
+                                                Rupiah</i>
+                                        </td>
+                                    </tr>
+                                    <br />
                                 </tbody>
-                            </table>
-                            <table>
-                                <tr>
-                                    <td style="width: 25%; vertical-align: top; font-weight: bold;">
-                                        Uang Sejumlah
-                                    </td>
-                                    <td style="width: 0.15cm; font-weight: bold;">
-                                        :
-                                    </td>
-                                    <td style="vertical-align: top;">
-                                        <i>{{ Str::title(Terbilang::make($sp2d->spm->spp->pengajuan_up->nilai)) }}
-                                            Rupiah</i>
-                                    </td>
-                                </tr>
                             </table>
                         </td>
                     </tr>
@@ -353,7 +361,7 @@
             </td>
         </tr>
         <tr>
-            <td style="padding-top: 30px;">
+            <td style="padding-top: 20px;">
                 <strong>Lembar Asli</strong> : Untuk Pengguna Anggaran BLUD
                 <br />
                 <strong>Salinan 1</strong> : Untuk Kuasa Pengguna Anggaran BLUD

@@ -21,6 +21,7 @@ Route::prefix('/penatausahaan')->group(function () {
     Route::resource('/penandatangan', PenandatanganController::class);
 
     Route::resource('/pengajuan-up', PengajuanUpController::class);
+    Route::get('/print-pengajuan-up/{pengajuan_up}', [PengajuanUpController::class, 'printPdfPengajuanUp'])->name('pengajuan-up.pdf-pengajuan-up');
 
     Route::resource('/bukti-gu', BuktiGuController::class);
     Route::get('/print-sbpb/bukti-gu/{bukti_gu}', [BuktiGuController::class, 'printPdfSbpb'])->name('bukti-gu.pdf-sbpb');

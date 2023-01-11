@@ -86,7 +86,7 @@
                             :
                         </td>
                         <td>
-                            BLUD RSJD ATMA HUSADA MAHAKAM PROV.KALTIM
+                            Hari Jumadi, A.Md. / Bendahara Pengeluaran BLUD
                         </td>
                     </tr>
                     <tr>

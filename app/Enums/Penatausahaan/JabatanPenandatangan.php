@@ -4,7 +4,7 @@ namespace App\Enums\Penatausahaan;
 
 enum JabatanPenandatangan: string
 {
-    case PA = 'Pengguna Anggaran';
+    case PA = 'Pengguna Anggaran BLUD';
     case KPA = 'Kuasa Pengguna Anggaran BLUD';
     case BPengeluaran = 'Bendahara Pengeluaran BLUD';
     case BPenerimaan = 'Bendahara Penerimaan';
