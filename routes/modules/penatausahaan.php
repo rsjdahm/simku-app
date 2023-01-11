@@ -46,8 +46,6 @@ Route::prefix('/penatausahaan')->group(function () {
     Route::resource('/spm', SpmController::class);
     Route::get('/print-spm/{spm}', [SpmController::class, 'printPdfSpm'])->name('spm.pdf-spm');
     Route::get('/print-pengantar-spm/{spm}', [SpmController::class, 'printPdfPengantarSpm'])->name('spm.pdf-pengantar-spm');
-    Route::get('/print-kelengkapan-spm/{spm}', [SpmController::class, 'printPdfKelengkapanSpm'])->name('spm.pdf-kelengkapan-spm');
-    Route::get('/print-pernyataan-spm/{spm}', [SpmController::class, 'printPdfPernyataanSpm'])->name('spm.pdf-pernyataan-spm');
 
     Route::resource('/sp2d', Sp2dController::class);
     Route::get('/print-sp2d/{sp2d}', [Sp2dController::class, 'printPdfSp2d'])->name('sp2d.pdf-sp2d');

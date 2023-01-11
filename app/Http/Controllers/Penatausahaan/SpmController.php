@@ -58,7 +58,8 @@ class SpmController extends Controller
                 })
                 ->addColumn('action2', function ($i) {
                     return '<div class="btn-group btn-group-sm ml-1" role="group"><button type="button" title="Cetak Dokumen" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"><i class="fas fa-print"></i></button><div class="dropdown-menu">
-                    <a data-load="modal-pdf" title="Cetak SPM-' . $i->spp->jenis->value . ' Nomor: ' . $i->nomor . '" href="' . route("spm.pdf-spm", $i->id) . '" class="dropdown-item">SPM-' . $i->spp->jenis->value . '</a>
+                    <a data-load="modal-pdf" title="Cetak Surat Pengantar SPM-' . $i->spp->jenis->value . ' Nomor: ' . $i->nomor . '" href="' . route("spm.pdf-pengantar-spm", $i->id) . '" class="dropdown-item">1. Surat Pengantar SPM-' . $i->spp->jenis->value . '</a>
+                    <a data-load="modal-pdf" title="Cetak SPM-' . $i->spp->jenis->value . ' Nomor: ' . $i->nomor . '" href="' . route("spm.pdf-spm", $i->id) . '" class="dropdown-item">2. SPM-' . $i->spp->jenis->value . '</a>
                     </div></div>';
                 })
                 ->rawColumns(['action', 'action2', 'jenis', 'status'])
@@ -153,5 +154,21 @@ class SpmController extends Controller
         ))
             ->setPaper('a4', 'landscape')
             ->stream('SPM.pdf');
+    }
+
+    public function printPdfPengantarSpm(Spm $spm)
+    {
+
+        switch ($spm->spp->jenis) {
+            case JenisPengeluaran::UP:
+                $view = 'pages.penatausahaan.spm.pdf-pengantar-spm-up';
+                break;
+        }
+
+        return Pdf::loadView($view, [
+            'spm' => $spm,
+        ])
+            ->setPaper('a4', 'potrait')
+            ->stream('Surat Pengantar SPM.pdf');
     }
 }

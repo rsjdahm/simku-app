@@ -114,7 +114,7 @@
     <div style="text-align: center; margin-left: 60%;">
         Samarinda, {{ Carbon\Carbon::parse($spp->tanggal)->isoFormat('DD MMMM YYYY') }}
         <br />
-        BENDAHARA PENGELUARAN
+        Bendahara Pengeluaran BLUD
         <br />
         <br />
         <br />
@@ -134,22 +134,22 @@
         <tr>
             <td style="width: 2.5cm;">Lembar Asli</td>
             <td style="width: 0.25cm;">:</td>
-            <td>Untuk Pengguna Anggaran/PPK-SKPD BLUD</td>
+            <td>Untuk Pengguna Anggaran BLUD/PPK-SKPD BLUD</td>
         </tr>
         <tr>
             <td>Salinan 1</td>
             <td>:</td>
-            <td>Untuk Kuasa BUD</td>
+            <td>Untuk Kuasa Pengguna Anggaran BLUD</td>
         </tr>
         <tr>
             <td>Salinan 2</td>
             <td>:</td>
-            <td>Untuk Bendahara Pengeluaran/PPTK BLUD</td>
+            <td>Untuk Bendahara Pengeluaran BLUD/PPTK BLUD</td>
         </tr>
         <tr>
             <td>Salinan 3</td>
             <td>:</td>
-            <td>Untuk Arsip Bendahara Pengeluaran/PPTK BLUD</td>
+            <td>Untuk Arsip</td>
         </tr>
     </table>
 
@@ -333,7 +333,7 @@
         <div style="text-align: center; margin-left: 60%;">
             Samarinda, {{ Carbon\Carbon::parse($spp->tanggal)->isoFormat('DD MMMM YYYY') }}
             <br />
-            BENDAHARA PENGELUARAN
+            Bendahara Pengeluaran BLUD
             <br />
             <br />
             <br />
