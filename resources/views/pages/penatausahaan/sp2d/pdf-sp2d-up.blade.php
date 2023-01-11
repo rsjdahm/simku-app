@@ -61,7 +61,7 @@
                             :
                         </td>
                         <td style="vertical-align: top;">
-                            {{ $sp2d->spm->nomor }}/SPM-UP/RSJDAHM/BLUD/{{ Carbon\Carbon::parse($sp2d->spm->tanggal)->year }}
+                            {{ $sp2d->spm->nomor }}/SPM-UP/RSJDAHM/BLUD/{{ Terbilang::roman(Carbon\Carbon::parse($sp2d->spm->tanggal)->month) }}/{{ Carbon\Carbon::parse($sp2d->spm->tanggal)->year }}
                         </td>
                     </tr>
                     <tr>
@@ -98,7 +98,7 @@
                             :
                         </td>
                         <td style="vertical-align: top;">
-                            Pengguna Anggaran
+                            Pengguna Anggaran BLUD
                         </td>
                     </tr>
                     <tr>
@@ -109,7 +109,7 @@
                             :
                         </td>
                         <td style="vertical-align: top;">
-                            {{ $sp2d->nomor }}/SP2D-UP/RSJDAHM/BLUD/2022
+                            {{ $sp2d->nomor }}/SP2D-UP/RSJDAHM/BLUD/{{ Terbilang::roman(Carbon\Carbon::parse($sp2d->tanggal)->month) }}/{{ Carbon\Carbon::parse($sp2d->tanggal)->year }}
                         </td>
                     </tr>
                     <tr>
@@ -354,9 +354,9 @@
         </tr>
         <tr>
             <td style="padding-top: 30px;">
-                <strong>Lembar Asli</strong> : Untuk Pengguna Anggaran
+                <strong>Lembar Asli</strong> : Untuk Pengguna Anggaran BLUD
                 <br />
-                <strong>Salinan 1</strong> : Untuk Kuasa Pengguna Anggaran
+                <strong>Salinan 1</strong> : Untuk Kuasa Pengguna Anggaran BLUD
                 <br />
                 <strong>Salinan 2</strong> : Untuk Arsip
                 <br />
@@ -365,7 +365,7 @@
             <td style="padding-top: 30px; text-align: center;">
                 Samarinda, {{ Carbon\Carbon::parse($sp2d->tanggal)->translatedFormat('d F Y') }}
                 <br />
-                Pengguna Anggaran
+                Pengguna Anggaran BLUD
                 <br />
                 <br />
                 <br />

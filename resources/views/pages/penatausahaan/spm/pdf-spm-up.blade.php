@@ -58,13 +58,13 @@
                 <strong>Tahun Anggaran :</strong> {{ Carbon\Carbon::parse($spm->tanggal)->year }}
             <td style="text-align: right; width: 50%;">
                 <strong>Nomor :</strong>
-                {{ $spm->nomor }}/SPM-UP/RSJDAHM/BLUD/{{ Carbon\Carbon::parse($spm->tanggal)->year }}
+                {{ $spm->nomor }}/SPM-UP/RSJDAHM/BLUD/{{ Terbilang::roman(Carbon\Carbon::parse($spm->tanggal)->month) }}/{{ Carbon\Carbon::parse($spm->tanggal)->year }}
             </td>
         </tr>
         <tr style="border-bottom: 1px solid black;">
             <td style="border-right: 1px solid black; padding: 0;">
                 <div style="padding: 5px;">
-                    <strong>PENGGUNA ANGGARAN RSJD ATMA HUSADA MAHAKAM PROVINSI KALIMANTAN TIMUR</strong>
+                    <strong>PENGGUNA ANGGARAN BLUD RSJD ATMA HUSADA MAHAKAM PROVINSI KALIMANTAN TIMUR</strong>
                     <br />
                     Supaya menerbitkan SP2D kepada:
                 </div>

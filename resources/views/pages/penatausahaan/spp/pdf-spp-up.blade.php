@@ -221,7 +221,7 @@
                 <br />
                 Samarinda, {{ Carbon\Carbon::parse($spp->tanggal)->translatedFormat('d F Y') }}
                 <br />
-                BENDAHARA PENGELUARAN
+                Bendahara Pengeluaran BLUD
                 <br />
                 <br />
                 <br />
@@ -238,13 +238,13 @@
                 <br />
                 <br />
                 <br />
-                <strong>Lembar Asli</strong> : Untuk Pengguna Anggaran/PPK-SKPD
+                <strong>Lembar Asli</strong> : Untuk Pengguna Anggaran BLUD/PPK-SKPD
                 <br />
-                <strong>Salinan 1</strong> : Untuk Kuasa BUD
+                <strong>Salinan 1</strong> : Untuk Kuasa Pengguna Anggaran BLUD
                 <br />
-                <strong>Salinan 2</strong> : Untuk Bendahara Pengeluaran
+                <strong>Salinan 2</strong> : Untuk Bendahara Pengeluaran BLUD
                 <br />
-                <strong>Salinan 3</strong> : Untuk Arsip Bendahara Pengeluaran
+                <strong>Salinan 3</strong> : Untuk Arsip Bendahara Pengeluaran BLUD
             </td>
         </tr>
     </table>
@@ -327,7 +327,7 @@
                         <td style="text-align: center;">
                             Samarinda, {{ Carbon\Carbon::parse($spp->tanggal)->translatedFormat('d F Y') }}
                             <br />
-                            BENDAHARA PENGELUARAN
+                            Bendahara Pengeluaran BLUD
                             <br />
                             <br />
                             <br />
