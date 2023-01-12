@@ -30,6 +30,7 @@ return new class extends Migration
             $table->string('nomor_rekening')->nullable();
             $table->date('tanggal_bayar')->nullable();
             $table->string('jenis')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

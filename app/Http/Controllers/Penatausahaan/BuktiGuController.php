@@ -13,6 +13,7 @@ use App\Models\Penatausahaan\BuktiGu;
 use App\Models\Setup\RekAkun;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
 use Yajra\DataTables\Html\Builder;
 
@@ -215,7 +216,7 @@ class BuktiGuController extends Controller
 
     public function store(BuktiGuRequest $request)
     {
-        BuktiGu::create($request->validated());
+        BuktiGu::create($request->safe()->merge(['user_id' => Auth::user()->id])->all());
 
         return response()->json(['message' => 'Bukti Transaksi GU berhasil ditambah.']);
     }
@@ -240,7 +241,7 @@ class BuktiGuController extends Controller
 
     public function update(BuktiGu $bukti_gu, BuktiGuRequest $request)
     {
-        $bukti_gu->update($request->validated());
+        $bukti_gu->update($request->safe()->merge(['user_id' => Auth::user()->id])->all());
 
         return response()->json(['message' => 'Bukti Transaksi GU berhasil diubah.']);
     }

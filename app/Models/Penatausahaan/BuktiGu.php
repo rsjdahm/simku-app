@@ -7,6 +7,7 @@ use App\Enums\Penatausahaan\MetodePembayaran;
 use App\Enums\Penatausahaan\StatusPosting;
 use App\Enums\Penatausahaan\StatusPending;
 use App\Models\Anggaran\BelanjaRkaPd;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -31,7 +32,8 @@ class BuktiGu extends Model
         'npwp',
         'bank_id',
         'nomor_rekening',
-        'jenis'
+        'jenis',
+        'user_id',
     ];
 
     protected $casts = [
@@ -63,5 +65,10 @@ class BuktiGu extends Model
     public function bukti_spj_gu()
     {
         return $this->hasOne(BuktiSpjGu::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }
