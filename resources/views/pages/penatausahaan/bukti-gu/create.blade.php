@@ -17,7 +17,7 @@
                 </div>
             @else
                 <input type="hidden" name="status_pending"
-                    value="{{ App\Enums\Penatausahaan\StatusPending::Normal->value }}">
+                    value="{{ App\Enums\Penatausahaan\StatusPending::Pending->value }}">
             @endif
             <div class="form-group">
                 <label class="form-label">Kode Rekening <span class="text-danger">*</span></label>
