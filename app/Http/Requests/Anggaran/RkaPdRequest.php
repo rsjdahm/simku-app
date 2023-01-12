@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Anggaran;
 
-use App\Enums\Anggaran\StatusRkaPdEnum;
+use App\Enums\Anggaran\StatusRkaPd;
 use App\Enums\UserRole;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
@@ -31,7 +31,7 @@ class RkaPdRequest extends FormRequest
             'sub_unit_kerja_id' => ['required', 'exists:sub_unit_kerja,id'],
             'nomor' => ['required', 'string'],
             'uraian' => ['required', 'string'],
-            'status' => ['required', new Enum(StatusRkaPdEnum::class)],
+            'status' => ['required', new Enum(StatusRkaPd::class)],
             'tanggal' => ['required', 'date'],
             'pagu_pendapatan' => ['required', 'numeric'],
             'pagu_pengeluaran' => ['required', 'numeric'],
