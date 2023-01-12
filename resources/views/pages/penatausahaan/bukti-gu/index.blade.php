@@ -28,16 +28,19 @@
                             <div class="col-md-3">
                                 <label class="d-block">Status Pending:</label>
                                 <div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
-                                    <label class="btn btn-primary active">
-                                        <input type="radio" name="status_pending_filter_datatable_bukti-gu-table"
-                                            value="{{ App\Enums\Penatausahaan\StatusPending::Normal }}"
-                                            autocomplete="off" checked=""> Normal
-                                        <strong class="text-light bg-success ml-2 rounded px-2"></strong>
-                                    </label>
+                                    @if (Auth::user()->modul != 'admin-blud')
+                                        <label class="btn btn-primary active">
+                                            <input type="radio" name="status_pending_filter_datatable_bukti-gu-table"
+                                                value="{{ App\Enums\Penatausahaan\StatusPending::Normal }}"
+                                                autocomplete="off" checked=""> Normal
+                                            <strong class="text-light bg-success ml-2 rounded px-2"></strong>
+                                        </label>
+                                    @endif
                                     <label class="btn btn-primary">
                                         <input type="radio" name="status_pending_filter_datatable_bukti-gu-table"
                                             value="{{ App\Enums\Penatausahaan\StatusPending::Pending }}"
-                                            autocomplete="off"> Pending
+                                            autocomplete="off" @if (Auth::user()->modul == 'admin-blud') checked="" @endif>
+                                        Pending
                                         <strong class="text-light bg-warning ml-2 rounded px-2"></strong>
                                     </label>
                                 </div>

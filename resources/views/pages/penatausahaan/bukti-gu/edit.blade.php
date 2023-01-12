@@ -3,18 +3,23 @@
     @method('put')
     <div class="row">
         <div class="col-md-6">
-            <div class="form-group bg-light rounded border p-3">
-                <label class="form-label">Status Pending <span class="text-danger">*</span></label>
-                @foreach (App\Enums\Penatausahaan\StatusPending::cases() as $status_pending)
-                    <div class="form-check">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="status_pending"
-                                value="{{ $status_pending }}" @checked($bukti_gu->status_pending == $status_pending)>
-                            {{ $status_pending }}
-                        </label>
-                    </div>
-                @endforeach
-            </div>
+            @if (Auth::user()->modul != 'admin-blud')
+                <div class="form-group bg-light rounded border p-3">
+                    <label class="form-label">Status Pending <span class="text-danger">*</span></label>
+                    @foreach (App\Enums\Penatausahaan\StatusPending::cases() as $status_pending)
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="status_pending"
+                                    value="{{ $status_pending }}" @checked($bukti_gu->status_pending == $status_pending)>
+                                {{ $status_pending }}
+                            </label>
+                        </div>
+                    @endforeach
+                </div>
+            @else
+                <input type="hidden" name="status_pending"
+                    value="{{ App\Enums\Penatausahaan\StatusPending::Normal->value }}">
+            @endif
             <div class="form-group">
                 <label class="form-label">Kode Rekening <span class="text-danger">*</span></label>
                 <select name="belanja_rka_pd_id" class="form-control">
@@ -60,10 +65,12 @@
                     @endforeach
                 </select>
             </div>
-            <div class="form-group">
-                <label class="form-label">Nomor Bukti <span class="text-warning">*</span></label>
-                <input autofocus name="nomor" class="form-control" value="{{ $bukti_gu->nomor }}">
-            </div>
+            @if (Auth::user()->modul != 'admin-blud')
+                <div class="form-group">
+                    <label class="form-label">Nomor Bukti <span class="text-warning">*</span></label>
+                    <input autofocus name="nomor" class="form-control" value="{{ $bukti_gu->nomor }}">
+                </div>
+            @endif
             <div class="form-group">
                 <label class="form-label">Tanggal <span class="text-warning">*</span></label>
                 <input type="date" name="tanggal" class="form-control" value="{{ $bukti_gu->tanggal }}">
@@ -87,14 +94,20 @@
                     @endforeach
                 </select>
             </div>
-            <div class="form-group">
-                <label class="form-label">Status <span class="text-danger">*</span></label>
-                <select name="status" class="form-control">
-                    @foreach (\App\Enums\Penatausahaan\StatusPosting::cases() as $status)
-                        <option value="{{ $status }}" @selected($bukti_gu->status == $status)>{{ $status }}</option>
-                    @endforeach
-                </select>
-            </div>
+            @if (Auth::user()->modul != 'admin-blud')
+                <div class="form-group">
+                    <label class="form-label">Status <span class="text-danger">*</span></label>
+                    <select name="status" class="form-control">
+                        @foreach (\App\Enums\Penatausahaan\StatusPosting::cases() as $status)
+                            <option value="{{ $status }}" @selected($bukti_gu->status == $status)>{{ $status }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+            @else
+                <input type="hidden" name="status"
+                    value="{{ App\Enums\Penatausahaan\StatusPosting::Posting->value }}">
+            @endif
         </div>
         <div class="col-md-6">
             <div class="card">
@@ -137,11 +150,13 @@
                         <input type="number" name="nomor_rekening" class="form-control"
                             value="{{ $bukti_gu->nomor_rekening }}">
                     </div>
-                    <div class="form-group">
-                        <label class="form-label">Tanggal Bayar <span class="text-warning">*</span></label>
-                        <input type="date" name="tanggal_bayar" class="form-control"
-                            value="{{ $bukti_gu->tanggal_bayar }}">
-                    </div>
+                    @if (Auth::user()->modul != 'admin-blud')
+                        <div class="form-group">
+                            <label class="form-label">Tanggal Bayar <span class="text-warning">*</span></label>
+                            <input type="date" name="tanggal_bayar" class="form-control"
+                                value="{{ $bukti_gu->tanggal_bayar }}">
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

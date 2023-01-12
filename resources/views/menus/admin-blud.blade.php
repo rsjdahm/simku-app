@@ -13,5 +13,10 @@
                 Bukti GU
             </a>
         </li>
+        <li>
+            <a data-load="#page" data-menu="item" href="{{ route('belanja-ls.index') }}">
+                Belanja LS
+            </a>
+        </li>
     </ul>
 </li>
