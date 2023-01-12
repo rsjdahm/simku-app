@@ -101,7 +101,7 @@
                 </div>
             @else
                 <input type="hidden" name="status"
-                    value="{{ App\Enums\Penatausahaan\StatusPosting::Posting->value }}">
+                    value="{{ App\Enums\Penatausahaan\StatusPosting::BelumPosting->value }}">
             @endif
         </div>
         <div class="col-md-6">
