@@ -168,7 +168,7 @@ class BuktiGuController extends Controller
                     $(api.column(3).footer()).remove();
                     $(api.column(4).footer()).remove();
                     $(api.column(5).footer()).remove();
-                    $(api.column(6).footer()).removeClass('text-center').attr('colspan', '7').html('Total Nilai Potongan').parent().addClass('bg-primary text-white');
+                    $(api.column(6).footer()).removeClass('text-center').attr('colspan', '7').html('Total Nilai').parent().addClass('bg-primary text-white');
                     $(api.column(7).footer()).html(json.sum_nilai.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 }));
                     $(api.column(8).footer()).html(json.sum_nilai_potongan.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 }));
                 }")
