@@ -118,7 +118,11 @@
             type: form.attr("method"),
             processData: false,
             contentType: false,
+            beforeSend: function() {
+                NProgress.start();
+            },
             success: function(response) {
+                NProgress.done();
                 window.history.pushState({
                     href: BASE_URL
                 }, '', BASE_URL)

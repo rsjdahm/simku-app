@@ -12,49 +12,52 @@
             <div class="card mt-n5 overflow-hidden pt-4">
                 <div class="card-body p-4">
                     <form class="form-horizontal" method="post" action="{{ route('login') }}">
-                        @csrf
+                        <fieldset>
+                            @csrf
 
-                        <div class="form-group text-center">
-                            <h6 class="font-weight-bold">{{ config('app.meta.description') }}</h6>
-                        </div>
+                            <div class="form-group text-center">
+                                <h6 class="font-weight-bold">{{ config('app.meta.description') }}</h6>
+                            </div>
 
-                        <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-id-card"></i></span>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-id-card"></i></span>
+                                    </div>
+                                    <input name="login" class="form-control" placeholder="Email atau NIP" required />
                                 </div>
-                                <input name="login" class="form-control" placeholder="Email atau NIP" required />
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                    </div>
+                                    <input name="password" type="password" class="form-control" placeholder="Kata Sandi"
+                                        required />
                                 </div>
-                                <input name="password" type="password" class="form-control" placeholder="Kata Sandi"
-                                    required />
                             </div>
-                        </div>
 
-                        <div class="custom-control custom-checkbox">
-                            <input name="remember" checked type="checkbox" class="custom-control-input" id="remember">
-                            <label class="custom-control-label" for="remember">{{ __('Remember me') }}</label>
-                        </div>
-
-                        <div class="mt-3">
-                            <button class="btn btn-lg btn-primary btn-block waves-effect" type="submit">
-                                {{ __('Log in') }}
-                            </button>
-                        </div>
-                        @if (Route::has('password.request'))
-                            <div class="mt-4 text-center">
-                                <a load="page" href="{{ route('password.request') }}" class="text-muted">
-                                    <i class="fas fa-lock mr-1"></i>
-                                    {{ __('Forgot your password?') }}
-                                </a>
+                            <div class="custom-control custom-checkbox">
+                                <input name="remember" checked type="checkbox" class="custom-control-input"
+                                    id="remember">
+                                <label class="custom-control-label" for="remember">{{ __('Remember me') }}</label>
                             </div>
-                        @endif
+
+                            <div class="mt-3">
+                                <button class="btn btn-lg btn-primary btn-block waves-effect" type="submit">
+                                    {{ __('Log in') }}
+                                </button>
+                            </div>
+                            @if (Route::has('password.request'))
+                                <div class="mt-4 text-center">
+                                    <a load="page" href="{{ route('password.request') }}" class="text-muted">
+                                        <i class="fas fa-lock mr-1"></i>
+                                        {{ __('Forgot your password?') }}
+                                    </a>
+                                </div>
+                            @endif
+                        </fieldset>
                     </form>
                 </div>
             </div>
@@ -73,7 +76,13 @@
             type: form.attr("method"),
             processData: false,
             contentType: false,
+            beforeSend: function() {
+                NProgress.start();
+                form.children('fieldset').attr('disabled', 'disabled');
+            },
             success: function(response) {
+                NProgress.done();
+                form.children('fieldset').attr('disabled', '');
                 return load('#app', response);
             }
         });
