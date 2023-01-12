@@ -3,7 +3,7 @@
     @method('put')
     <div class="row">
         <div class="col-md-6">
-            @if (Auth::user()->modul != 'admin-blud')
+            @if (Auth::user()->modul != 'admin-blud' && Auth::user()->modul != 'admin-blud2')
                 <div class="form-group bg-light rounded border p-3">
                     <label class="form-label">Status Pending <span class="text-danger">*</span></label>
                     @foreach (App\Enums\Penatausahaan\StatusPending::cases() as $status_pending)
@@ -65,7 +65,7 @@
                     @endforeach
                 </select>
             </div>
-            @if (Auth::user()->modul != 'admin-blud')
+            @if (Auth::user()->modul != 'admin-blud' && Auth::user()->modul != 'admin-blud2')
                 <div class="form-group">
                     <label class="form-label">Nomor Bukti <span class="text-warning">*</span></label>
                     <input autofocus name="nomor" class="form-control" value="{{ $bukti_gu->nomor }}">
@@ -94,7 +94,7 @@
                     @endforeach
                 </select>
             </div>
-            @if (Auth::user()->modul != 'admin-blud')
+            @if (Auth::user()->modul != 'admin-blud' && Auth::user()->modul != 'admin-blud2')
                 <div class="form-group">
                     <label class="form-label">Status <span class="text-danger">*</span></label>
                     <select name="status" class="form-control">
@@ -150,7 +150,7 @@
                         <input type="number" name="nomor_rekening" class="form-control"
                             value="{{ $bukti_gu->nomor_rekening }}">
                     </div>
-                    @if (Auth::user()->modul != 'admin-blud')
+                    @if (Auth::user()->modul != 'admin-blud' && Auth::user()->modul != 'admin-blud2')
                         <div class="form-group">
                             <label class="form-label">Tanggal Bayar <span class="text-warning">*</span></label>
                             <input type="date" name="tanggal_bayar" class="form-control"
