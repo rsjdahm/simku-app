@@ -1,5 +1,5 @@
 <li>
-    <a data-load="#page" data-menu="default" href="{{ route('dashboard.show') }}">
+    <a data-menu="default" href="{{ route('dashboard.show') }}">
         <span>Dashboard</span>
     </a>
 </li>
@@ -9,12 +9,12 @@
     </a>
     <ul class="sub-menu">
         <li>
-            <a data-load="#page" data-menu="item" href="{{ route('rka-pd.index') }}">
+            <a data-menu="item" href="{{ route('rka-pd.index') }}">
                 Rencana Anggaran
             </a>
         </li>
         <li>
-            <a data-load="#page" data-menu="item" href="{{ route('belanja-rka-pd.index') }}">
+            <a data-menu="item" href="{{ route('belanja-rka-pd.index') }}">
                 Rincian Belanja
             </a>
         </li>

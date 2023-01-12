@@ -1,5 +1,5 @@
 <li>
-    <a data-load="#page" data-menu="default" href="{{ route('dashboard.show') }}">
+    <a data-menu="default" href="{{ route('dashboard.show') }}">
         <span>Dashboard</span>
     </a>
 </li>
@@ -9,17 +9,17 @@
     </a>
     <ul class="sub-menu">
         <li>
-            <a data-load="#page" data-menu="item" href="{{ route('penandatangan.index') }}">
+            <a data-menu="item" href="{{ route('penandatangan.index') }}">
                 Penandatangan
             </a>
         </li>
         <li>
-            <a data-load="#page" data-menu="item" href="{{ route('potongan-pfk.index') }}">
+            <a data-menu="item" href="{{ route('potongan-pfk.index') }}">
                 Potongan PFK
             </a>
         </li>
         <li>
-            <a data-load="#page" data-menu="item" href="{{ route('bank.index') }}">
+            <a data-menu="item" href="{{ route('bank.index') }}">
                 Bank Tujuan
             </a>
         </li>
@@ -31,12 +31,12 @@
     </a>
     <ul class="sub-menu">
         <li>
-            <a data-load="#page" data-menu="item" href="{{ route('spm.index') }}">
+            <a data-menu="item" href="{{ route('spm.index') }}">
                 SPM
             </a>
         </li>
         <li>
-            <a data-load="#page" data-menu="item" href="{{ route('sp2d.index') }}">
+            <a data-menu="item" href="{{ route('sp2d.index') }}">
                 SP2D
             </a>
         </li>
@@ -48,27 +48,27 @@
     </a>
     <ul class="sub-menu">
         <li>
-            <a data-load="#page" data-menu="item" href="{{ route('pengajuan-up.index') }}">
+            <a data-menu="item" href="{{ route('pengajuan-up.index') }}">
                 Pengajuan UP
             </a>
         </li>
         <li>
-            <a data-load="#page" data-menu="item" href="{{ route('bukti-gu.index') }}">
+            <a data-menu="item" href="{{ route('bukti-gu.index') }}">
                 Bukti GU
             </a>
         </li>
         <li>
-            <a data-load="#page" data-menu="item" href="{{ route('spj-gu.index') }}">
+            <a data-menu="item" href="{{ route('spj-gu.index') }}">
                 SPJ GU
             </a>
         </li>
         <li>
-            <a data-load="#page" data-menu="item" href="{{ route('belanja-ls.index') }}">
+            <a data-menu="item" href="{{ route('belanja-ls.index') }}">
                 Belanja LS
             </a>
         </li>
         <li>
-            <a data-load="#page" data-menu="item" href="{{ route('spp.index') }}">
+            <a data-menu="item" href="{{ route('spp.index') }}">
                 SPP
             </a>
         </li>
@@ -78,7 +78,7 @@
             </a>
             <ul class="sub-menu">
                 <li>
-                    <a data-load="#page" data-menu="item">
+                    <a data-menu="item">
                         Buku Pembantu Kas Tunai
                     </a>
                 </li>

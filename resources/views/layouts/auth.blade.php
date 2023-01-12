@@ -3,8 +3,6 @@
 
         @include('components.header-auth')
 
-        @include('components.topbar')
-
         <div class="main-content">
             <div class="page-content">
                 <div id="page"></div>
@@ -17,6 +15,6 @@
 <script type="text/javascript">
     /// call initial page of auth layout: login page
     $(document).ready(function() {
-        load('#page', '{{ route('login') }}');
+        return load('#page', '{{ route('login') }}');
     });
 </script>

@@ -68,12 +68,14 @@
         event.preventDefault();
         const anchor = $(this);
 
-        load(anchor.data('load'), anchor.attr('href'), function() {
+        load('#page', anchor.attr('href'), function() {
             let url = new URL(window.location);
             url.searchParams.set('route', anchor.attr('href').replace(BASE_URL + '/', ''));
             window.history.pushState({}, '', url)
             activateMenu();
         });
+
+        return false;
     });
 
     $('main').click(function(event) {

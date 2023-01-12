@@ -243,11 +243,7 @@ $(document).ready(function () {
 $("body").on("click", "a[data-load]", function (event) {
     const a = $(this);
     event.preventDefault();
-    if (
-        !a.data("menu") &&
-        a.data("load") != "modal" &&
-        a.data("load") != "modal-pdf"
-    ) {
+    if (a.data("load") != "modal" && a.data("load") != "modal-pdf") {
         return load(a.data("load"), a.attr("href"));
     }
 });
