@@ -3,8 +3,6 @@
         <div class="col-12">
             <div class="page-title-box">
                 <h4>Bank Tujuan</h4>
-                <a data-action="reload" class="btn btn-primary btn-sm float-right text-white"><i
-                        class="fas fa-sync-alt"></i></a>
                 <ol class="breadcrumb m-0">
                     <li class="breadcrumb-item">Penatausahaan</li>
                     <li class="breadcrumb-item">Parameter</li>
