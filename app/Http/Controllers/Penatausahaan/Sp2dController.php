@@ -57,7 +57,8 @@ class Sp2dController extends Controller
                 })
                 ->addColumn('action2', function ($i) {
                     return '<div class="btn-group btn-group-sm ml-1" role="group"><button type="button" title="Cetak Dokumen" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"><i class="fas fa-print"></i></button><div class="dropdown-menu">
-                    <a data-load="modal-pdf" title="Cetak SP2D-' . $i->spm->spp->jenis->value . ' Nomor: ' . $i->nomor . '" href="' . route("sp2d.pdf-sp2d", $i->id) . '" class="dropdown-item">SP2D-' . $i->spm->spp->jenis->value . '</a>
+                    <a data-load="modal-pdf" title="Cetak SP2D-' . $i->spm->spp->jenis->value . ' Nomor: ' . $i->nomor . '" href="' . route("sp2d.pdf-sp2d", $i->id) . '" class="dropdown-item">1. SP2D-' . $i->spm->spp->jenis->value . '</a>
+                    <a data-load="modal-pdf" title="Cetak Lembar Kendali Permintaan Cek" href="' . route("sp2d.pdf-lembar-kendali-cek", $i->id) . '" class="dropdown-item">2. Lembar Kendali Cek</a>
                     </div></div>';
                 })
                 ->rawColumns(['action', 'action2', 'jenis', 'status'])
@@ -151,6 +152,16 @@ class Sp2dController extends Controller
             'sp2d',
         ))
             ->setPaper('a4', 'potrait')
-            ->stream('SPM.pdf');
+            ->stream('SP2D.pdf');
+    }
+
+    public function printPdfLembarKendaliCek(Sp2d $sp2d)
+    {
+
+        return Pdf::loadView('pages.penatausahaan.sp2d.pdf-lembar-kendali-cek', compact(
+            'sp2d',
+        ))
+            ->setPaper('a4', 'landscape')
+            ->stream('Lembar kendali Cek.pdf');
     }
 }

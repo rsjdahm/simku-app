@@ -53,4 +53,5 @@ Route::prefix('/penatausahaan')->group(function () {
     Route::get('/print-pengantar-sp2d/{sp2d}', [Sp2dController::class, 'printPdfPengantarSp2d'])->name('sp2d.pdf-pengantar-sp2d');
     Route::get('/print-kelengkapan-sp2d/{sp2d}', [Sp2dController::class, 'printPdfKelengkapanSp2d'])->name('sp2d.pdf-kelengkapan-sp2d');
     Route::get('/print-pernyataan-sp2d/{sp2d}', [Sp2dController::class, 'printPdfPernyataanSp2d'])->name('sp2d.pdf-pernyataan-sp2d');
+    Route::get('/print-lembar-kendali-cek/{sp2d}', [Sp2dController::class, 'printPdfLembarKendaliCek'])->name('sp2d.pdf-lembar-kendali-cek');
 });
