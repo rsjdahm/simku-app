@@ -327,7 +327,7 @@ $("body").on("click", "a[data-menu]", function (event) {
     event.preventDefault();
     const anchor = $(this);
 
-    load("#page", anchor.attr("href"), function () {
+    return load("#page", anchor.attr("href"), function () {
         let url = new URL(window.location);
         url.searchParams.set(
             "route",
@@ -336,8 +336,6 @@ $("body").on("click", "a[data-menu]", function (event) {
         window.history.pushState({}, "", url);
         activateMenu();
     });
-
-    return false;
 });
 
 $("main").click(function (event) {
