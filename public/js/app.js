@@ -321,3 +321,33 @@ function poster(anchor) {
         }
     });
 }
+
+// save to history loader
+$("body").on("click", "a[data-menu]", function (event) {
+    event.preventDefault();
+    const anchor = $(this);
+
+    load("#page", anchor.attr("href"), function () {
+        let url = new URL(window.location);
+        url.searchParams.set(
+            "route",
+            anchor.attr("href").replace(BASE_URL + "/", "")
+        );
+        window.history.pushState({}, "", url);
+        activateMenu();
+    });
+
+    return false;
+});
+
+$("main").click(function (event) {
+    if ($("main").hasClass("sidebar-enable")) {
+        var $target = $(event.target);
+        if (
+            !$target.closest(".vertical-menu").length &&
+            !$target.closest("#vertical-menu-btn").length
+        ) {
+            $("main").removeClass("sidebar-enable");
+        }
+    }
+});
