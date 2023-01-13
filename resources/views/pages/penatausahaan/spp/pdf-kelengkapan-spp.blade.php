@@ -129,6 +129,8 @@
             <td>Untuk Arsip Bendahara Pengeluaran/PPTK BLUD</td>
         </tr>
     </table>
+
+    @include('vendor.dompdf.footer-a4-potrait')
 </body>
 
 </html>

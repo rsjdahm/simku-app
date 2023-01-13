@@ -83,6 +83,8 @@
         <br />
         NIP. 19750911 199402 1 001
     </div>
+
+    @include('vendor.dompdf.footer-a4-potrait')
 </body>
 
 </html>

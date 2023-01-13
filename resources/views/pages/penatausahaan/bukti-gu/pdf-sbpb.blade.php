@@ -74,7 +74,7 @@
         </tr>
         <tr>
             <td colspan="3">
-                Sudah diterima dari Bendahara Pengeluaran, uang sejumlah Rp
+                Sudah diterima dari Bendahara Pengeluaran BLUD, uang sejumlah Rp
                 {{ number_format($bukti_gu->nilai, 2, ',', '.') }} secara {{ $bukti_gu->metode_pembayaran }}
                 @if ($bukti_gu->metode_pembayaran == App\Enums\Penatausahaan\MetodePembayaran::Transfer)
                     (Nomor Rekening: {{ $bukti_gu->bank->nama }} {{ $bukti_gu->nomor_rekening }})

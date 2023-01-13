@@ -63,7 +63,7 @@
                     <tr>
                         <td style="padding: 3px; vertical-align: top; width: 15%;">Sudah terima dari</td>
                         <td style="padding: 3px; vertical-align: top; width: 0.2cm;">:</td>
-                        <td style="padding: 3px; vertical-align: top;">Kuasa Pengguna Anggaran BLUD
+                        <td style="padding: 3px; vertical-align: top;">Kuasa Pengguna Anggaran
                             {{ $bukti_gu->belanja_rka_pd->rka_pd->sub_unit_kerja->nama }}
                             Provinsi Kalimantan Timur</td>
                     </tr>

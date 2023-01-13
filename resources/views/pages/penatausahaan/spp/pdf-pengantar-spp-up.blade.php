@@ -186,9 +186,9 @@
         <div>
             Kepada Yth.
             <br />
-            Pengguna Anggaran/Kuasa Pengguna Anggaran BLUD
+            Pengguna Anggaran/Kuasa Pengguna Anggaran
             <br />
-            RSJD Atma Husada Mahakam Provinsi Kalimantan Timur
+            {{ $spp->pengajuan_up->sub_unit_kerja->nama }}
             <br />
             di Tempat
         </div>
@@ -213,7 +213,7 @@
                 </td>
                 <td style="vertical-align: top;">
                     {{ $spp->pengajuan_up->sub_unit_kerja->unit_kerja->bidang->kode_lengkap }}
-                    {{ $spp->pengajuan_up->sub_unit_kerja->unit_kerja->bidang->nama }}
+                    {{ $spp->pengajuan_up->sub_unit_kerja->unit_kerja->bidang->urusan->nama }}
                 </td>
             </tr>
             <tr>
@@ -290,7 +290,7 @@
                     :
                 </td>
                 <td style="vertical-align: top;">
-                    Hari Jumadi, A.Md.
+                    Hari Jumadi, A.Md. / Bendahara Pengeluaran BLUD
                 </td>
             </tr>
             <tr>
@@ -346,7 +346,7 @@
     </div>
 
 
-    {{-- @include('vendor.dompdf.footer-a4-potrait') --}}
+    @include('vendor.dompdf.footer-a4-potrait')
 </body>
 
 </html>

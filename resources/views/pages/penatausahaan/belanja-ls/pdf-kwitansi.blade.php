@@ -63,7 +63,7 @@
                     <tr>
                         <td style="padding: 3px; vertical-align: top; width: 15%;">Sudah terima dari</td>
                         <td style="padding: 3px; vertical-align: top; width: 0.2cm;">:</td>
-                        <td style="padding: 3px; vertical-align: top;">Kuasa Pengguna Anggaran BLUD
+                        <td style="padding: 3px; vertical-align: top;">Kuasa Pengguna Anggaran
                             {{ $belanja_ls->belanja_rka_pd->rka_pd->sub_unit_kerja->nama }}
                             Provinsi Kalimantan Timur</td>
                     </tr>
@@ -134,7 +134,7 @@
                     ? Carbon\Carbon::parse($belanja_ls->tanggal_bayar)->translatedFormat('d F Y')
                     : '.....................................' !!}
                 <br />
-                Bendahara Pengeluaran,
+                Bendahara Pengeluaran BLUD,
                 <br />
                 <br />
                 <br />

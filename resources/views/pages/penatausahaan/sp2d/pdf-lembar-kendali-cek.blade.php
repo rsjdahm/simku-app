@@ -136,7 +136,7 @@
         </tr>
     </table>
 
-    @include('vendor.dompdf.footer-a4-potrait')
+    @include('vendor.dompdf.footer-a4-landscape')
 
 </body>
 
