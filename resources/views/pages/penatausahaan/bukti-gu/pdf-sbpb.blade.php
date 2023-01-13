@@ -249,7 +249,7 @@
                         <td
                             style="border: 0; padding: 3px 5px; width: 33%; border-right: 1px solid black; vertical-align: top; text-align: center;">
                             <br />
-                            BENDAHARA PENGELUARAN
+                            Bendahara Pengeluaran BLUD
                             <br />
                             <br />
                             <br />

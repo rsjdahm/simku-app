@@ -134,7 +134,7 @@
                     ? Carbon\Carbon::parse($bukti_gu->tanggal_bayar)->translatedFormat('d F Y')
                     : '.....................................' !!}
                 <br />
-                Bendahara Pengeluaran,
+                Bendahara Pengeluaran BLUD,
                 <br />
                 <br />
                 <br />
