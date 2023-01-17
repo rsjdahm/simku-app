@@ -52,9 +52,17 @@ $(document).ajaxError(function (event, xhr, settings, thrownError) {
                 if (name.length < 3) {
                     const input = $('[name^="' + name[0] + '[]"]');
                     input.css("box-shadow", "inset 0 -1px 0 red");
-                    input.after(
-                        `<small class="text-danger">${messages}</small>`
-                    );
+                    if (input.parents(".input-group").length) {
+                        input
+                            .parents(".input-group")
+                            .after(
+                                `<small class="text-danger">${messages}</small>`
+                            );
+                    } else {
+                        input.after(
+                            `<small class="text-danger">${messages}</small>`
+                        );
+                    }
                 } else {
                     const input = $(
                         '[name^="' +
@@ -66,9 +74,17 @@ $(document).ajaxError(function (event, xhr, settings, thrownError) {
                             ']"]'
                     );
                     input.css("box-shadow", "inset 0 -1px 0 red");
-                    input.after(
-                        `<small class="text-danger">${messages}</small>`
-                    );
+                    if (input.parents(".input-group").length) {
+                        input
+                            .parents(".input-group")
+                            .after(
+                                `<small class="text-danger">${messages}</small>`
+                            );
+                    } else {
+                        input.after(
+                            `<small class="text-danger">${messages}</small>`
+                        );
+                    }
                 }
             } else {
                 const input = $('[name="' + name + '"]');
@@ -86,9 +102,17 @@ $(document).ajaxError(function (event, xhr, settings, thrownError) {
                         );
                 } else {
                     input.css("box-shadow", "inset 0 -1px 0 red");
-                    input.after(
-                        `<small class="text-danger">${messages}</small>`
-                    );
+                    if (input.parents(".input-group").length) {
+                        input
+                            .parents(".input-group")
+                            .after(
+                                `<small class="text-danger">${messages}</small>`
+                            );
+                    } else {
+                        input.after(
+                            `<small class="text-danger">${messages}</small>`
+                        );
+                    }
                 }
             }
         });
