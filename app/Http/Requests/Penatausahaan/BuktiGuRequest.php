@@ -7,6 +7,7 @@ use App\Enums\Penatausahaan\MetodePembayaran;
 use App\Enums\Penatausahaan\StatusPending;
 use App\Enums\Penatausahaan\StatusPosting;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Enum;
 
 class BuktiGuRequest extends FormRequest
@@ -31,7 +32,7 @@ class BuktiGuRequest extends FormRequest
         return [
             'belanja_rka_pd_id' => ['required', 'exists:belanja_rka_pd,id'],
             'status_pending' => ['required', new Enum(StatusPending::class)],
-            'nomor' => ['required_if:status_pending,' . StatusPending::Normal->value, 'required_if:status,' . StatusPosting::Posting->value, 'nullable', 'string'],
+            'nomor' => ['required_if:status_pending,' . StatusPending::Normal->value, 'required_if:status,' . StatusPosting::Posting->value, 'nullable', 'string', Rule::unique('bukti_gu', 'nomor')->ignore($this->nomor, 'nomor')],
             'tanggal' => ['required_if:status_pending,' . StatusPending::Normal->value, 'required_if:status,' . StatusPosting::Posting->value, 'nullable', 'date'],
             'uraian' => ['required', 'string'],
             'nilai' => ['required', 'numeric'],
