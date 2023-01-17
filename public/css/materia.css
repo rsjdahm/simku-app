@@ -3587,7 +3587,7 @@ input[type="submit"].btn-block {
     display: flex;
     -ms-flex-align: center;
     align-items: center;
-    padding: 1rem 0;
+    /* padding: 1rem 0; */
     margin-bottom: 0;
     font-size: 0.8125rem;
     font-weight: 400;

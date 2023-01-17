@@ -68,7 +68,25 @@
             @if (Auth::user()->modul != 'admin-blud' && Auth::user()->modul != 'admin-blud2')
                 <div class="form-group">
                     <label class="form-label">Nomor Bukti <span class="text-warning">*</span></label>
-                    <input autofocus name="nomor" class="form-control" value="{{ $bukti_gu->nomor }}">
+                    <div class="input-group">
+                        <input autofocus name="nomor" class="form-control" value="{{ $bukti_gu->nomor }}">
+                        <div class="input-group-append">
+                            <span class="input-group-text">
+                                <button onclick="return getNomorBuktiGuOtomatis()" type="button"
+                                    class="btn btn-sm btn-primary"><i class="fas fa-search"></i>
+                                    Nomor Bukti
+                                    <br />
+                                    by Sistem</button>
+                            </span>
+                            <script>
+                                function getNomorBuktiGuOtomatis() {
+                                    $.get("{{ route('bukti-gu.nomor-bukti-gu-otomatis') }}", function(data, status) {
+                                        $("input[name='nomor']").val(data.padStart(4, "0"));
+                                    });
+                                }
+                            </script>
+                        </div>
+                    </div>
                 </div>
             @endif
             <div class="form-group">

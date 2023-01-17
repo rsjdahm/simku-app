@@ -241,7 +241,8 @@ class BuktiGuController extends Controller
 
     public function update(BuktiGu $bukti_gu, BuktiGuRequest $request)
     {
-        $bukti_gu->update($request->safe()->merge(['user_id' => Auth::user()->id])->all());
+        $bukti_gu->update($request->safe()->all());
+        // $bukti_gu->update($request->safe()->merge(['user_id' => Auth::user()->id])->all());
 
         return response()->json(['message' => 'Bukti Transaksi GU berhasil diubah.']);
     }
@@ -271,5 +272,10 @@ class BuktiGuController extends Controller
         ))
             ->setPaper('a4', 'potrait')
             ->stream('Kwitansi.pdf');
+    }
+
+    public function getNomorBuktiGuOtomatis()
+    {
+        return ((int) BuktiGu::whereNotNull('nomor')->orderBy('nomor', 'desc')->first()->nomor) + 1;
     }
 }
