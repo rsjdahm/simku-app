@@ -78,8 +78,10 @@
                             </span>
                             <script>
                                 function getNomorBuktiGuOtomatis() {
+                                    NProgress.start();
                                     $.get("{{ route('bukti-gu.nomor-bukti-gu-otomatis') }}", function(data, status) {
                                         $("input[name='nomor']").val(data.padStart(4, "0"));
+                                        NProgress.done();
                                     });
                                 }
                             </script>
