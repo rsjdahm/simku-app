@@ -6,6 +6,7 @@ use App\Enums\Penatausahaan\JenisBuktiGu;
 use App\Enums\Penatausahaan\MetodePembayaran;
 use App\Enums\Penatausahaan\StatusPosting;
 use App\Enums\Penatausahaan\StatusPending;
+use App\Enums\UserRole;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Penatausahaan\BuktiGuRequest;
 use App\Models\Penatausahaan\Bank;
@@ -34,17 +35,25 @@ class BuktiGuController extends Controller
                 ->when($request->bulan, function ($q) use ($request) {
                     return $q->whereMonth('tanggal', $request->bulan);
                 })
-                ->when(Auth::user()->role == 'operator', function ($q) use ($request) {
+                ->when(Auth::user()->role == UserRole::Operator, function ($q) {
                     return $q->where('user_id', Auth::user()->id);
                 })
                 ->get();
 
             return DataTables::of($data)
                 ->with('bukti_gu_normal_count', function () {
-                    return BuktiGu::where('status_pending', StatusPending::Normal)->count();
+                    return BuktiGu::where('status_pending', StatusPending::Normal)
+                        ->when(Auth::user()->role == UserRole::Operator, function ($q) {
+                            return $q->where('user_id', Auth::user()->id);
+                        })
+                        ->count();
                 })
                 ->with('bukti_gu_pending_count', function () {
-                    return BuktiGu::where('status_pending', StatusPending::Pending)->count();
+                    return BuktiGu::where('status_pending', StatusPending::Pending)
+                        ->when(Auth::user()->role == UserRole::Operator, function ($q) {
+                            return $q->where('user_id', Auth::user()->id);
+                        })
+                        ->count();
                 })
                 ->with('sum_nilai', $data->sum(function ($i) {
                     return $i->nilai;
