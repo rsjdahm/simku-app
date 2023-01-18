@@ -19,10 +19,6 @@ use Yajra\DataTables\Html\Builder;
 
 class BuktiGuController extends Controller
 {
-    public function __construct(RekAkun $rek_akun)
-    {
-        $this->rek_akun = $rek_akun;
-    }
     public function index(Builder $builder, Request $request)
     {
         if ($request->wantsJson()) :
@@ -200,7 +196,7 @@ class BuktiGuController extends Controller
     public function create()
     {
         return view('pages.penatausahaan.bukti-gu.create', [
-            'rek_akun' => $this->rek_akun->belanja()->with([
+            'rek_akun' => RekAkun::with([
                 'rek_kelompok',
                 'rek_kelompok.rek_jenis.rek_objek.rek_rincian_objek.rek_sub_rincian_objek.belanja_rka_pd',
                 'rek_kelompok.rek_jenis',
@@ -209,6 +205,7 @@ class BuktiGuController extends Controller
                 'rek_kelompok.rek_jenis.rek_objek.rek_rincian_objek.rek_sub_rincian_objek',
             ])
                 ->has('rek_kelompok.rek_jenis.rek_objek.rek_rincian_objek.rek_sub_rincian_objek.belanja_rka_pd')
+                ->belanja()
                 ->get(),
             'bank' => Bank::get()
         ]);
@@ -225,7 +222,7 @@ class BuktiGuController extends Controller
     {
         return view('pages.penatausahaan.bukti-gu.edit', [
             'bukti_gu' => $bukti_gu,
-            'rek_akun' => $this->rek_akun->belanja()->with([
+            'rek_akun' => RekAkun::with([
                 'rek_kelompok',
                 'rek_kelompok.rek_jenis.rek_objek.rek_rincian_objek.rek_sub_rincian_objek.belanja_rka_pd',
                 'rek_kelompok.rek_jenis',
@@ -234,6 +231,7 @@ class BuktiGuController extends Controller
                 'rek_kelompok.rek_jenis.rek_objek.rek_rincian_objek.rek_sub_rincian_objek',
             ])
                 ->has('rek_kelompok.rek_jenis.rek_objek.rek_rincian_objek.rek_sub_rincian_objek.belanja_rka_pd')
+                ->belanja()
                 ->get(),
             'bank' => Bank::get()
         ]);
@@ -277,5 +275,64 @@ class BuktiGuController extends Controller
     public function getNomorBuktiGuOtomatis()
     {
         return ((int) BuktiGu::whereNotNull('nomor')->orderBy('nomor', 'desc')->first()->nomor) + 1;
+    }
+
+    public function penerimaIndex(Builder $builder, Request $request)
+    {
+        if ($request->wantsJson()) :
+            $data = BuktiGu::with(['bank'])
+                ->when($request->jenis, function ($q) use ($request) {
+                    return $q->where('jenis', $request->jenis);
+                })
+                ->get()
+                ->unique('nama');
+
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function ($i) {
+                    return '<button type="button" class="btn btn-success btn-sm text-nowrap"><i class="fas fa-check"></i> Pilih</button>';
+                })
+                ->rawColumns(['action'])
+                ->toJson();
+        else :
+
+            $table = $builder->ajax([
+                'url' => route('bukti-gu.penerima-index'),
+                'data' => 'function(d) {
+                    d.jenis = $("[name=\'jenis_filter\']").val();
+                }',
+            ])
+                ->addAction(['title' => '', 'style' => 'width: 1%;', 'orderable' => false])
+                ->addColumn(['data' => 'nama', 'title' => 'Nama Penerima', 'defaultContent' => '-'])
+                ->addColumn(['data' => 'jenis', 'title' => 'Jenis Penerima', 'defaultContent' => '-'])
+                ->addColumn(['data' => 'alamat', 'title' => 'Alamat', 'defaultContent' => '-'])
+                ->addColumn(['data' => 'npwp', 'title' => 'NPWP', 'class' => 'text-center', 'style' => 'width: 1%;', 'defaultContent' => '-'])
+                ->addColumn(['data' => 'bank.nama', 'title' => 'Nama Bank', 'class' => 'text-center', 'defaultContent' => '-'])
+                ->addColumn(['data' => 'nomor_rekening', 'title' => 'Nomor Rekening', 'defaultContent' => '-'])
+                ->orders([[
+                    1, 'asc'
+                ]])
+                ->drawCallback("function (row, data, start, end, display) {
+                    let api = this.api();
+                    let table = window.LaravelDataTables['bukti-gu-penerima-table'];
+                    $('#bukti-gu-penerima-table tbody').on('click', 'button', function () {
+                        const data = table.row($(this).parents('tr')).data();
+
+                        $('[name=\"nama\"]').val(data.nama);
+                        $('[name=\"jenis\"]').val(data.jenis).trigger('change')
+                        $('[name=\"alamat\"]').val(data.alamat);
+                        $('[name=\"npwp\"]').val(data.npwp);
+                        $('[name=\"bank_id\"]').val(data.bank_id).trigger('change')
+                        $('[name=\"nomor_rekening\"]').val(data.nomor_rekening);
+
+                        $(this).closest('div.modal').modal('hide');
+                    });
+                }");
+
+            return view('pages.penatausahaan.bukti-gu.penerima-index', [
+                'table' => $table
+            ]);
+
+        endif;
     }
 }

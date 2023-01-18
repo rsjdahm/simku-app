@@ -10827,7 +10827,7 @@ select[multiple] {
     padding-left: 0.25rem;
 }
 .input-group .form-control {
-    padding-left: 0.25rem;
+    /* padding-left: 0.25rem; */
     padding-right: 0.25rem;
 }
 .input-group-sm > .input-group-append > .btn,

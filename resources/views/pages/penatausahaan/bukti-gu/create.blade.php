@@ -71,10 +71,8 @@
                         <div class="input-group-append">
                             <span class="input-group-text">
                                 <button onclick="return getNomorBuktiGuOtomatis()" type="button"
-                                    class="btn btn-sm btn-primary"><i class="fas fa-search"></i>
-                                    Nomor Bukti
-                                    <br />
-                                    by Sistem</button>
+                                    class="btn btn-sm btn-success"><i class="fas fa-edit"></i>
+                                    By Sistem</button>
                             </span>
                             <script>
                                 function getNomorBuktiGuOtomatis() {
@@ -129,7 +127,17 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label class="form-label">Nama Penerima <span class="text-danger">*</span></label>
-                        <input name="nama" class="form-control">
+                        <div class="input-group">
+                            <input name="nama" class="form-control">
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <a data-load="modal" title="Pilih dari Daftar Penerima" data-size="lg"
+                                        href="{{ route('bukti-gu.penerima-index') }}" class="btn btn-sm btn-primary"><i
+                                            class="fas fa-search"></i>
+                                        Cari</a>
+                                </span>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Jenis Penerima <span class="text-danger">*</span></label>

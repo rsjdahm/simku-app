@@ -36,7 +36,7 @@ class RekAkun extends Model
         return $this->hasMany(RekKelompok::class);
     }
 
-    public function belanja()
+    public function scopeBelanja()
     {
         return $this->where('jenis', JenisRekAkun::Belanja);
     }

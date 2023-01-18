@@ -27,6 +27,7 @@ Route::prefix('/penatausahaan')->group(function () {
     Route::get('/print-sbpb/bukti-gu/{bukti_gu}', [BuktiGuController::class, 'printPdfSbpb'])->name('bukti-gu.pdf-sbpb');
     Route::get('/print-kwitansi/bukti-gu/{bukti_gu}', [BuktiGuController::class, 'printPdfKwitansi'])->name('bukti-gu.pdf-kwitansi');
     Route::get('/bukti-gu-nomor-by-sistem', [BuktiGuController::class, 'getNomorBuktiGuOtomatis'])->name('bukti-gu.nomor-bukti-gu-otomatis');
+    Route::get('/bukti-gu-penerima', [BuktiGuController::class, 'penerimaIndex'])->name('bukti-gu.penerima-index');
 
     Route::resource('/potongan-bukti-gu', PotonganBuktiGuController::class);
 
