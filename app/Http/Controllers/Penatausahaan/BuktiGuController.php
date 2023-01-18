@@ -34,7 +34,9 @@ class BuktiGuController extends Controller
                 ->when($request->bulan, function ($q) use ($request) {
                     return $q->whereMonth('tanggal', $request->bulan);
                 })
-
+                ->when(Auth::user()->role == 'operator', function ($q) use ($request) {
+                    return $q->where('user_id', Auth::user()->id);
+                })
                 ->get();
 
             return DataTables::of($data)
