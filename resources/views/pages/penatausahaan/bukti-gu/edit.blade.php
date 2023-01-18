@@ -73,10 +73,7 @@
                         <div class="input-group-append">
                             <span class="input-group-text">
                                 <button onclick="return getNomorBuktiGuOtomatis()" type="button"
-                                    class="btn btn-sm btn-primary"><i class="fas fa-search"></i>
-                                    Nomor Bukti
-                                    <br />
-                                    by Sistem</button>
+                                    class="btn btn-sm btn-primary"><i class="fas fa-edit"></i>By Sistem</button>
                             </span>
                             <script>
                                 function getNomorBuktiGuOtomatis() {
