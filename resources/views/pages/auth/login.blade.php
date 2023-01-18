@@ -78,13 +78,13 @@
             contentType: false,
             beforeSend: function() {
                 NProgress.start();
-                form.children('fieldset').attr('disabled', 'disabled');
+                form.children('fieldset').prop("disabled", true);
             },
             success: function(response) {
                 NProgress.done();
-                form.children('fieldset').attr('disabled', '');
+                $("form").find("fieldset").prop("disabled", false);
                 return load('#app', response);
-            }
+            },
         });
         return false;
     });

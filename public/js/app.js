@@ -23,6 +23,7 @@ $.ajaxSetup({
 $(document).ajaxError(function (event, xhr, settings, thrownError) {
     $("form").find("small.text-danger").remove();
     $("form").find("input, textarea, .select2-selection").css("box-shadow", "");
+    $("form").find("fieldset").prop("disabled", false);
 
     NProgress.done();
 
