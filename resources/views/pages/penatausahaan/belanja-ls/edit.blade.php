@@ -107,7 +107,7 @@
                         <label class="form-label">Jenis Penerima <span class="text-danger">*</span></label>
                         <select name="jenis" class="form-control">
                             <option value="" disabled selected>Pilih Jenis Penerima...</option>
-                            @foreach (\App\Enums\Penatausahaan\JenisBuktiGu::cases() as $jenis)
+                            @foreach (\App\Enums\Penatausahaan\JenisBelanjaLs::cases() as $jenis)
                                 <option value="{{ $jenis }}" @selected($belanja_ls->jenis == $jenis)>{{ $jenis }}
                                 </option>
                             @endforeach

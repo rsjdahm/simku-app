@@ -219,10 +219,10 @@ class BelanjaLsController extends Controller
         return response()->json(['message' => 'Data Belanja LS berhasil ditambah.']);
     }
 
-    public function edit(BelanjaLs $belanja_ls)
+    public function edit(BelanjaLs $belanja_l)
     {
         return view('pages.penatausahaan.belanja-ls.edit', [
-            'belanja_ls' => $belanja_ls,
+            'belanja_ls' => $belanja_l,
             'rek_akun' => $this->rek_akun->belanja()->with([
                 'rek_kelompok',
                 'rek_kelompok.rek_jenis.rek_objek.rek_rincian_objek.rek_sub_rincian_objek.belanja_rka_pd',
@@ -237,16 +237,16 @@ class BelanjaLsController extends Controller
         ]);
     }
 
-    public function update(BelanjaLs $belanja_ls, BelanjaLsRequest $request)
+    public function update(BelanjaLs $belanja_l, BelanjaLsRequest $request)
     {
-        $belanja_ls->update($request->validated());
+        $belanja_l->update($request->validated());
 
         return response()->json(['message' => 'Data Belanja LS berhasil diubah.']);
     }
 
-    public function destroy(BelanjaLs $belanja_ls)
+    public function destroy(BelanjaLs $belanja_l)
     {
-        $belanja_ls->delete();
+        $belanja_l->delete();
 
         return response()->json(['message' => 'Data Belanja LS berhasil dihapus.']);
     }
