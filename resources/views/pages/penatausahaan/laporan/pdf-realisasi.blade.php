@@ -125,7 +125,7 @@
                         @if ($jumlah_nilai_per_akun > 0 && $jumlah_realisasi_per_akun > 0)
                             {{ number_format(($jumlah_realisasi_per_akun / $jumlah_nilai_per_akun) * 100, 2, ',', '.') }}
                         @elseif ($jumlah_nilai_per_akun <= 0 && $jumlah_realisasi_per_akun > 0)
-                            TD
+                            ~
                         @else
                             0,00
                         @endif
@@ -153,7 +153,7 @@
                             @if ($jumlah_nilai_per_kelompok > 0 && $jumlah_realisasi_per_kelompok > 0)
                                 {{ number_format(($jumlah_realisasi_per_kelompok / $jumlah_nilai_per_kelompok) * 100, 2, ',', '.') }}
                             @elseif ($jumlah_nilai_per_kelompok <= 0 && $jumlah_realisasi_per_kelompok > 0)
-                                TD
+                                ~
                             @else
                                 0,00
                             @endif
@@ -181,7 +181,7 @@
                                 @if ($jumlah_nilai_per_jenis > 0 && $jumlah_realisasi_per_jenis > 0)
                                     {{ number_format(($jumlah_realisasi_per_jenis / $jumlah_nilai_per_jenis) * 100, 2, ',', '.') }}
                                 @elseif ($jumlah_nilai_per_jenis <= 0 && $jumlah_realisasi_per_jenis > 0)
-                                    TD
+                                    ~
                                 @else
                                     0,00
                                 @endif
@@ -210,7 +210,7 @@
                                     @if ($jumlah_nilai_per_objek > 0 && $jumlah_realisasi_per_objek > 0)
                                         {{ number_format(($jumlah_realisasi_per_objek / $jumlah_nilai_per_objek) * 100, 2, ',', '.') }}
                                     @elseif ($jumlah_nilai_per_objek <= 0 && $jumlah_realisasi_per_objek > 0)
-                                        TD
+                                        ~
                                     @else
                                         0,00
                                     @endif
@@ -239,7 +239,7 @@
                                         @if ($jumlah_nilai_per_rincian_objek > 0 && $jumlah_realisasi_per_rincian_objek > 0)
                                             {{ number_format(($jumlah_realisasi_per_rincian_objek / $jumlah_nilai_per_rincian_objek) * 100, 2, ',', '.') }}
                                         @elseif ($jumlah_nilai_per_rincian_objek <= 0 && $jumlah_realisasi_per_rincian_objek > 0)
-                                            TD
+                                            ~
                                         @else
                                             0,00
                                         @endif
@@ -268,7 +268,7 @@
                                             @if ($total_nilai_per_sub_rincian_objek > 0 && $total_realisasi_per_sub_rincian_objek > 0)
                                                 {{ number_format(($total_realisasi_per_sub_rincian_objek / $total_nilai_per_sub_rincian_objek) * 100, 2, ',', '.') }}
                                             @elseif ($total_nilai_per_sub_rincian_objek <= 0 && $total_realisasi_per_sub_rincian_objek > 0)
-                                                TD
+                                                ~
                                             @else
                                                 0,00
                                             @endif
