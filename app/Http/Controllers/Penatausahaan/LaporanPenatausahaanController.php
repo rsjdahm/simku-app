@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Penatausahaan;
 
+use App\Enums\Penatausahaan\StatusPosting;
 use App\Http\Controllers\Controller;
 use App\Models\Anggaran\BelanjaRkaPd;
 use App\Models\Anggaran\RkaPd;
@@ -24,13 +25,12 @@ class LaporanPenatausahaanController extends Controller
         $rka_pd = RkaPd::first();
 
         // $belanja_rka_pd = BelanjaRkaPd::whereHas('bukti_gu')->orWhereHas('belanja_ls')->get();
-        $belanja_rka_pd = BelanjaRkaPd::with(['bukti_gu' => function ($q) use ($tgl_start, $tgl_end) {
-            return $q->whereBetween('tanggal', [$tgl_start, $tgl_end]);
-        }, 'belanja_ls' => function ($q) use ($tgl_start, $tgl_end) {
-            return $q->whereBetween('tanggal', [$tgl_start, $tgl_end]);
-        }])
-            ->withSum('bukti_gu', 'nilai')
-            ->withSum('belanja_ls', 'nilai')
+        $belanja_rka_pd = BelanjaRkaPd::withSum(['bukti_gu' => function ($q) use ($tgl_start, $tgl_end) {
+            return $q->whereBetween('tanggal', [$tgl_start, $tgl_end])->whereNotNull('tanggal')->where('status', StatusPosting::Posting);
+        }], 'nilai')
+            ->withSum(['belanja_ls' => function ($q) use ($tgl_start, $tgl_end) {
+                return $q->whereBetween('tanggal', [$tgl_start, $tgl_end])->whereNotNull('tanggal')->where('status', StatusPosting::Posting);
+            }], 'nilai')
             ->get();
 
         $rek_sub_rincian_objek = RekSubRincianObjek::whereIn('id', $belanja_rka_pd->pluck('rek_sub_rincian_objek_id'))
