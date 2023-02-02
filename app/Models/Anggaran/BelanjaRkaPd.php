@@ -2,6 +2,8 @@
 
 namespace App\Models\Anggaran;
 
+use App\Models\Penatausahaan\BelanjaLs;
+use App\Models\Penatausahaan\BuktiGu;
 use App\Models\Setup\RekSubRincianObjek;
 use App\Models\Setup\SubKegiatan;
 use Illuminate\Database\Eloquent\Model;
@@ -42,6 +44,16 @@ class BelanjaRkaPd extends Model
     public function rek_sub_rincian_objek()
     {
         return $this->belongsTo(RekSubRincianObjek::class);
+    }
+
+    public function bukti_gu()
+    {
+        return $this->hasMany(BuktiGu::class);
+    }
+
+    public function belanja_ls()
+    {
+        return $this->hasMany(BelanjaLs::class);
     }
 
     protected $appends = [

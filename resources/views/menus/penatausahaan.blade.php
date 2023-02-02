@@ -78,8 +78,9 @@
             </a>
             <ul class="sub-menu">
                 <li>
-                    <a data-menu="item">
-                        Buku Pembantu Kas Tunai
+                    <a data-load="modal-pdf" title="Cetak Rincian Anggaran"
+                        href="{{ route('laporan.pdf-realisasi', ['tgl_start' => '2023-01-01', 'tgl_end' => '2023-01-31']) }}">
+                        Laporan Realisasi
                     </a>
                 </li>
 
