@@ -43,6 +43,16 @@
                             <small class="font-weight-bold text-success">
                                 {{ number_format(($sum_realisasi_belanja_rka_pd / $sum_belanja_rka_pd) * 100, 2, ',', '.') }}%
                             </small>
+                            <ul>
+                                <li>Triwulan I: Rp {{ number_format($sum_realisasi_belanja_rka_pd_tw1, 2, ',', '.') }}
+                                </li>
+                                <li>Triwulan II: Rp {{ number_format($sum_realisasi_belanja_rka_pd_tw2, 2, ',', '.') }}
+                                </li>
+                                <li>Triwulan III: Rp {{ number_format($sum_realisasi_belanja_rka_pd_tw3, 2, ',', '.') }}
+                                </li>
+                                <li>Triwulan IV: Rp {{ number_format($sum_realisasi_belanja_rka_pd_tw4, 2, ',', '.') }}
+                                </li>
+                            </ul>
                         </div>
 
                         <div class="avatar-sm rounded-circle bg-primary align-self-center mini-stat-icon">
