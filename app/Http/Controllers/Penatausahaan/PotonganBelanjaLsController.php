@@ -126,24 +126,24 @@ class PotonganBelanjaLsController extends Controller
         return response()->json(['message' => 'Potongan pada Belanja LS berhasil ditambah.']);
     }
 
-    public function edit(PotonganBelanjaLs $potongan_belanja_ls)
+    public function edit(PotonganBelanjaLs $potongan_belanja_l)
     {
         return view('pages.penatausahaan.potongan-belanja-ls.edit', [
-            'potongan_belanja_ls' => $potongan_belanja_ls,
+            'potongan_belanja_ls' => $potongan_belanja_l,
             'potongan_pfk' => PotonganPfk::get()
         ]);
     }
 
-    public function update(PotonganBelanjaLs $potongan_belanja_ls, PotonganBelanjaLsRequest $request)
+    public function update(PotonganBelanjaLs $potongan_belanja_l, PotonganBelanjaLsRequest $request)
     {
-        $potongan_belanja_ls->update($request->validated());
+        $potongan_belanja_l->update($request->validated());
 
         return response()->json(['message' => 'Potongan pada Belanja LS berhasil diubah.']);
     }
 
-    public function destroy(PotonganBelanjaLs $potongan_belanja_ls)
+    public function destroy(PotonganBelanjaLs $potongan_belanja_l)
     {
-        $potongan_belanja_ls->delete();
+        $potongan_belanja_l->delete();
 
         return response()->json(['message' => 'Potongan pada Belanja LS berhasil dihapus.']);
     }
