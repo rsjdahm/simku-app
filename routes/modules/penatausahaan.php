@@ -58,5 +58,7 @@ Route::prefix('/penatausahaan')->group(function () {
     Route::get('/print-pernyataan-sp2d/{sp2d}', [Sp2dController::class, 'printPdfPernyataanSp2d'])->name('sp2d.pdf-pernyataan-sp2d');
     Route::get('/print-lembar-kendali-cek/{sp2d}', [Sp2dController::class, 'printPdfLembarKendaliCek'])->name('sp2d.pdf-lembar-kendali-cek');
 
+    Route::get('/laporan-realisasi', [LaporanPenatausahaanController::class, 'index'])->name('laporan-realisasi.index');
+    Route::post('/laporan-realisasi/show', [LaporanPenatausahaanController::class, 'show'])->name('laporan-realisasi.show');
     Route::get('/print-laporan-realisasi', [LaporanPenatausahaanController::class, 'printPdfRealisasi'])->name('laporan.pdf-realisasi');
 });
