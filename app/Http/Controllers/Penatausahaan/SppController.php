@@ -173,12 +173,12 @@ class SppController extends Controller
             case JenisPengeluaran::UP:
                 $view = 'pages.penatausahaan.spp.pdf-pernyataan-spp-up';
                 break;
-                // case JenisPengeluaran::GU:
-                //     $view = 'pages.penatausahaan.spp.pdf-spp-gu';
-                //     break;
-                // case JenisPengeluaran::LS:
-                //     $view = 'pages.penatausahaan.spp.pdf-spp-ls';
-                //     break;
+            case JenisPengeluaran::GU:
+                $view = 'pages.penatausahaan.spp.pdf-pernyataan-spp-gu';
+                break;
+            case JenisPengeluaran::LS:
+                $view = 'pages.penatausahaan.spp.pdf-pernyataan-spp-ls';
+                break;
         }
 
         return Pdf::loadView($view, compact(
@@ -195,12 +195,12 @@ class SppController extends Controller
             case JenisPengeluaran::UP:
                 $view = 'pages.penatausahaan.spp.pdf-pengantar-spp-up';
                 break;
-                // case JenisPengeluaran::GU:
-                //     $view = 'pages.penatausahaan.spp.pdf-spp-gu';
-                //     break;
-                // case JenisPengeluaran::LS:
-                //     $view = 'pages.penatausahaan.spp.pdf-spp-ls';
-                //     break;
+            case JenisPengeluaran::GU:
+                $view = 'pages.penatausahaan.spp.pdf-pengantar-spp-gu';
+                break;
+            case JenisPengeluaran::LS:
+                $view = 'pages.penatausahaan.spp.pdf-pengantar-spp-ls';
+                break;
         }
 
         return Pdf::loadView($view, [

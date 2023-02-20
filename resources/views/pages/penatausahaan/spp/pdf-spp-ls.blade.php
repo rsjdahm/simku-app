@@ -44,10 +44,10 @@
                         </td>
                         <td style="text-align: center; vertical-align: middle;">
                             <h3 style="margin: 0;">PEMERINTAH PROVINSI KALIMANTAN TIMUR</h3>
-                            <h2 style="margin: 0; font-size: 11pt;">SURAT PERMINTAAN PEMBAYARAN UANG PERSEDIAAN (SPP-UP)
+                            <h2 style="margin: 0; font-size: 11pt;">SURAT PERMINTAAN PEMBAYARAN LANGSUNG (SPP-LS)
                                 BLUD </h2>
                             Nomor :
-                            {{ $spp->nomor }}/SPP-UP/RSJDAHM/BLUD/{{ Terbilang::roman(Carbon\Carbon::parse($spp->tanggal)->month) }}/{{ Carbon\Carbon::parse($spp->tanggal)->year }}
+                            {{ $spp->nomor }}/SPP-LS/RSJDAHM/BLUD/{{ Terbilang::roman(Carbon\Carbon::parse($spp->tanggal)->month) }}/{{ Carbon\Carbon::parse($spp->tanggal)->year }}
                         </td>
                     </tr>
                 </table>
@@ -64,7 +64,7 @@
                             :
                         </td>
                         <td>
-                            {{ $spp->pengajuan_up->sub_unit_kerja->nama }}
+                            {{ $spp->belanja_ls->belanja_rka_pd->rka_pd->sub_unit_kerja->nama }}
                         </td>
                     </tr>
                     <tr>
@@ -148,9 +148,9 @@
         </tr>
         <tr>
             <td style="black; padding-left: 7.75cm;">
-                Sebesar Rp. {{ number_format($spp->pengajuan_up->nilai, 2, ',', '.') }}
+                Sebesar Rp. {{ number_format($spp->belanja_ls->nilai, 2, ',', '.') }}
                 <br />
-                (Terbilang: <i>{{ Str::title(Terbilang::make($spp->pengajuan_up->nilai)) }} Rupiah</i>)
+                (Terbilang: <i>{{ Str::title(Terbilang::make($spp->belanja_ls->nilai)) }} Rupiah</i>)
                 <br />
                 <br />
             </td>
@@ -178,10 +178,10 @@
                     </td>
                     <td style="border: 1px solid black; width: 4cm;">
                         Tanggal:
-                        02 Januari 2023
+                        {{ Carbon\Carbon::parse($spp->belanja_ls->belanja_rka_pd->rka_pd->tanggal)->translatedFormat('d F Y') }}
                     </td>
                     <td style="border: 1px solid black;">
-                        Nomor: DPA/A.1/1.02.0.00.0.00.01.0011/001/2023
+                        Nomor: {{ $spp->belanja_ls->belanja_rka_pd->rka_pd->nomor }}
                     </td>
                     <td style="border: 1px solid black; border-right: 0; width: 5cm;">
                     </td>
@@ -203,7 +203,7 @@
                     </td>
                     <td style="border: 1px solid black;">
                         Nomor:
-                        {{ $spp->spm->sp2d->nomor }}/SP2D-UP/RSJDAHM/BLUD/{{ Terbilang::roman(Carbon\Carbon::parse($spp->spm->sp2d->tanggal)->month) }}/{{ Carbon\Carbon::parse($spp->spm->sp2d->tanggal)->year }}
+                        {{ $spp->spm->sp2d->nomor }}/SP2D-LS/RSJDAHM/BLUD/{{ Terbilang::roman(Carbon\Carbon::parse($spp->spm->sp2d->tanggal)->month) }}/{{ Carbon\Carbon::parse($spp->spm->sp2d->tanggal)->year }}
                     </td>
                     <td style="border: 1px solid black; border-right: 0; width: 5cm;">
                     </td>
@@ -263,10 +263,10 @@
                         </td>
                         <td style="text-align: center; vertical-align: middle;">
                             <h3 style="margin: 0;">PEMERINTAH PROVINSI KALIMANTAN TIMUR</h3>
-                            <h2 style="margin: 0; font-size: 11pt;">SURAT PERMINTAAN PEMBAYARAN UANG PERSEDIAAN (SPP-UP)
+                            <h2 style="margin: 0; font-size: 11pt;">SURAT PERMINTAAN PEMBAYARAN LANGSUNG (SPP-LS)
                                 BLUD </h2>
                             Nomor :
-                            {{ $spp->nomor }}/SPP-UP/RSJDAHM/BLUD/{{ Terbilang::roman(Carbon\Carbon::parse($spp->tanggal)->month) }}/{{ Carbon\Carbon::parse($spp->tanggal)->year }}<br />
+                            {{ $spp->nomor }}/SPP-LS/RSJDAHM/BLUD/{{ Terbilang::roman(Carbon\Carbon::parse($spp->tanggal)->month) }}/{{ Carbon\Carbon::parse($spp->tanggal)->year }}<br />
                             Tahun Anggaran : 2023
                         </td>
                     </tr>
@@ -291,22 +291,25 @@
                 </tr>
                 <tr>
                     <td style="border: 1px solid black; border-left: 0; text-align: center;">1</td>
-                    <td style="border: 1px solid black;">{{ $spp->pengajuan_up->rek_sub_rincian_objek->kode_lengkap }}
+                    <td style="border: 1px solid black;">
+                        {{ $spp->belanja_ls->belanja_rka_pd->rek_sub_rincian_objek->kode_lengkap }}
                     </td>
-                    <td style="border: 1px solid black;">{{ $spp->pengajuan_up->rek_sub_rincian_objek->nama }}</td>
+                    <td style="border: 1px solid black;">
+                        {{ $spp->belanja_ls->belanja_rka_pd->rek_sub_rincian_objek->nama }}
+                    </td>
                     <td style="border: 1px solid black; border-right: 0; text-align: right;">
-                        {{ number_format($spp->pengajuan_up->nilai, 2, ',', '.') }}</td>
+                        {{ number_format($spp->belanja_ls->nilai, 2, ',', '.') }}</td>
                 </tr>
             </table>
         </tr>
         <tr>
             <td style="text-align: right; font-weight: bold;">
-                TOTAL : Rp. {{ number_format($spp->pengajuan_up->nilai, 2, ',', '.') }}
+                TOTAL : Rp. {{ number_format($spp->belanja_ls->nilai, 2, ',', '.') }}
             </td>
         </tr>
         <tr>
             <td>
-                Terbilang: <i>{{ Str::title(Terbilang::make($spp->pengajuan_up->nilai)) }} Rupiah</i>
+                Terbilang: <i>{{ Str::title(Terbilang::make($spp->belanja_ls->nilai)) }} Rupiah</i>
             </td>
         </tr>
         <tr>

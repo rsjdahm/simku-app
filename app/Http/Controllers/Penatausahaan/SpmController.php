@@ -141,9 +141,6 @@ class SpmController extends Controller
             case JenisPengeluaran::UP:
                 $view = 'pages.penatausahaan.spm.pdf-spm-up';
                 break;
-            case JenisPengeluaran::GU:
-                $view = 'pages.penatausahaan.spm.pdf-spm-gu';
-                break;
             case JenisPengeluaran::LS:
                 $view = 'pages.penatausahaan.spm.pdf-spm-ls';
                 break;
@@ -162,6 +159,9 @@ class SpmController extends Controller
         switch ($spm->spp->jenis) {
             case JenisPengeluaran::UP:
                 $view = 'pages.penatausahaan.spm.pdf-pengantar-spm-up';
+                break;
+            case JenisPengeluaran::LS:
+                $view = 'pages.penatausahaan.spm.pdf-pengantar-spm-ls';
                 break;
         }
 
