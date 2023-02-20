@@ -157,8 +157,19 @@ class Sp2dController extends Controller
 
     public function printPdfLembarKendaliCek(Sp2d $sp2d)
     {
+        switch ($sp2d->spm->spp->jenis) {
+            case JenisPengeluaran::UP:
+                $view = 'pages.penatausahaan.sp2d.pdf-lembar-kendali-cek-up';
+                break;
+            case JenisPengeluaran::GU:
+                $view = 'pages.penatausahaan.sp2d.pdf-lembar-kendali-cek-gu';
+                break;
+            case JenisPengeluaran::LS:
+                $view = 'pages.penatausahaan.sp2d.pdf-lembar-kendali-cek-ls';
+                break;
+        }
 
-        return Pdf::loadView('pages.penatausahaan.sp2d.pdf-lembar-kendali-cek', compact(
+        return Pdf::loadView($view, compact(
             'sp2d',
         ))
             ->setPaper('a4', 'landscape')
