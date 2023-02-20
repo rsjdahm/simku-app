@@ -34,6 +34,7 @@ Route::prefix('/penatausahaan')->group(function () {
 
     Route::resource('/spj-gu', SpjGuController::class);
     Route::resource('/bukti-spj-gu', BuktiSpjGuController::class);
+    Route::get('/print-spj-gu/{spj_gu}', [SpjGuController::class, 'printPdfSpjGu'])->name('spj-gu.pdf-spj-gu');
 
     Route::resource('/belanja-ls', BelanjaLsController::class);
     Route::get('/print-sbpb/belanja-ls/{belanja_ls}', [BelanjaLsController::class, 'printPdfSbpb'])->name('belanja-ls.pdf-sbpb');

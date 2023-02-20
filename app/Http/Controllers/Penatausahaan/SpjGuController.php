@@ -6,6 +6,7 @@ use App\Enums\Penatausahaan\StatusPosting;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Penatausahaan\SpjGuRequest;
 use App\Models\Penatausahaan\SpjGu;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use Yajra\DataTables\Html\Builder;
@@ -44,7 +45,9 @@ class SpjGuController extends Controller
                     return $badge;
                 })
                 ->addColumn('action2', function ($i) {
-                    $action = '<div class="btn-group btn-group-sm" role="group"><button type="button" title="Tambah Data Pendukung" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><i class="fas fa-plus"></i></button><div class="dropdown-menu"><a data-load="modal" data-size="xl" title="Daftar Bukti Pengeluaran pada SPJ Nomor: ' . $i->nomor . '" href="' . route('bukti-spj-gu.index', ['spj_gu_id' => $i->id]) . '" class="dropdown-item">Daftar Bukti Pengeluaran (' . $i->bukti_spj_gu_count . ')</a></div></div>';
+                    $action = '<div class="btn-group btn-group-sm" role="group"><button type="button" title="Tambah Data Pendukung" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><i class="fas fa-plus"></i></button><div class="dropdown-menu"><a data-load="modal" data-size="xl" title="Daftar Bukti Pengeluaran pada SPJ Nomor: ' . $i->nomor . '" href="' . route('bukti-spj-gu.index', ['spj_gu_id' => $i->id]) . '" class="dropdown-item">Daftar Bukti Pengeluaran (' . $i->bukti_spj_gu_count . ')</a></div></div><div class="btn-group btn-group-sm ml-1" role="group"><button type="button" title="Cetak Dokumen" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"><i class="fas fa-print"></i></button><div class="dropdown-menu">
+                    <a data-load="modal-pdf" href="' . route("spj-gu.pdf-spj-gu", $i->id) . '" class="dropdown-item">SPJ GU</a>
+                    </div></div>';
                     return $action;
                 })
                 ->addColumn('nilai', function ($i) {
@@ -124,5 +127,14 @@ class SpjGuController extends Controller
         $spj_gu->delete();
 
         return response()->json(['message' => 'Surat Pertanggungjawaban GU berhasil dihapus.']);
+    }
+
+    public function printPdfSpjGu(SpjGu $spj_gu)
+    {
+        return Pdf::loadView('pages.penatausahaan.spj-gu.pdf-spj-gu', [
+            'spj_gu' => $spj_gu
+        ])
+            ->setPaper('a4', 'landscape')
+            ->stream('spj-gu-' . $spj_gu->nomor . '.pdf');
     }
 }
