@@ -205,6 +205,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+
                                     <tr style="border-bottom: 1px solid black;">
                                         <td style="padding: 0 auto; border-right: 1px solid black;"></td>
                                         <td style="padding: 0 auto; border-right: 1px solid black;"></td>
@@ -234,17 +235,28 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr style="border-bottom: 1px solid black;">
-                                        <td style="padding: 0 auto; border-right: 1px solid black;"></td>
-                                        <td style="padding: 0 auto; border-right: 1px solid black;"></td>
-                                        <td style="padding: 0 auto; text-align: right;"></td>
-                                    </tr>
+                                    @php
+                                        $total_potongan = 0;
+                                    @endphp
+                                    @foreach ($spm->spp->belanja_ls->potongan_belanja_ls as $potongan_belanja_ls)
+                                        <tr style="border-bottom: 1px solid black;">
+                                            <td style="padding: 0 auto; border-right: 1px solid black;">
+                                                {{ $potongan_belanja_ls->potongan_pfk->kode_map }}</td>
+                                            <td style="padding: 0 auto; border-right: 1px solid black;">
+                                                {{ $potongan_belanja_ls->potongan_pfk->nama }}</td>
+                                            <td style="padding: 0 auto; text-align: right;">
+                                                {{ number_format($potongan_belanja_ls->nilai, 2, ',', '.') }}</td>
+                                        </tr>
+                                        @php
+                                            $total_potongan += $potongan_belanja_ls->nilai;
+                                        @endphp
+                                    @endforeach
                                     <tr style="border-bottom: 1px solid black;">
                                         <td colspan="2"
                                             style="padding: 0 auto; border-right: 1px solid black; text-align: center;">
                                             Jumlah</td>
                                         <td style="padding: 0 auto; text-align: right;">
-                                            {{ number_format(0, 2, ',', '.') }}</td>
+                                            {{ number_format($total_potongan, 2, ',', '.') }}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -271,7 +283,7 @@
                                             Jumlah Potongan
                                         </td>
                                         <td style="padding: 0 auto; text-align: right; border-right: 1px solid black;">
-                                            {{ number_format(0, 2, ',', '.') }}
+                                            {{ number_format($total_potongan, 2, ',', '.') }}
                                         </td>
                                         <td style="padding: 0 auto; text-align: right;"></td>
                                     </tr>
@@ -280,7 +292,8 @@
                                             Jumlah yang Dibayarkan
                                         </td>
                                         <td style="padding: 0 auto; text-align: right;">
-                                            {{ number_format($spm->spp->belanja_ls->nilai, 2, ',', '.') }}</td>
+                                            {{ number_format($spm->spp->belanja_ls->nilai - $total_potongan, 2, ',', '.') }}
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
