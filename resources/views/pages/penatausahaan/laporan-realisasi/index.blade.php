@@ -35,8 +35,22 @@
                         <div class="form-group">
                             <button type="submit" class="btn btn-success"><i class="fas fa-desktop"></i>
                                 Tampilkan</button>
-                            <a href="{{ route('laporan.pdf-realisasi') }}" class="btn btn-secondary"><i
-                                    class="fas fa-save"></i> Cetak PDF</a>
+                            <script>
+                                let url = '{{ route('laporan.pdf-realisasi') }}';
+
+                                function changePdfLink() {
+                                    $('#pdf-show').attr('href', url + '?tgl_start=' + $('[name="tgl_start"]').val() + '&tgl_end=' + $(
+                                        '[name="tgl_end"]').val());
+                                }
+                                $('[name="tgl_start"]').change(function() {
+                                    changePdfLink();
+                                });
+                                $('[name="tgl_end"]').change(function() {
+                                    changePdfLink();
+                                });
+                            </script>
+                            <a data-load="modal-pdf" id="pdf-show" href="{{ route('laporan.pdf-realisasi') }}"
+                                class="btn btn-secondary"><i class="fas fa-save"></i> Cetak PDF</a>
                         </div>
                     </form>
                 </div>
