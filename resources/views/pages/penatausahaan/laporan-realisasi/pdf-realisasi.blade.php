@@ -109,7 +109,7 @@
             @foreach ($rek_akun as $_rek_akun)
                 @php
                     $jumlah_nilai_per_akun = $belanja_rka_pd->whereIn('rek_sub_rincian_objek_id', $rek_sub_rincian_objek->whereIn('rek_rincian_objek_id', $rek_rincian_objek->whereIn('rek_objek_id', $rek_objek->whereIn('rek_jenis_id', $rek_jenis->whereIn('rek_kelompok_id', $rek_kelompok->where('rek_akun_id', $_rek_akun->id)->pluck('id'))->pluck('id'))->pluck('id'))->pluck('id'))->pluck('id'))->sum('nilai');
-                    
+
                 @endphp
                 <tr style="font-weight: bold; background: #cbcbcb">
                     <td>{{ $_rek_akun->kode_lengkap }}</td>
@@ -137,7 +137,7 @@
                 @foreach ($rek_kelompok->where('rek_akun_id', $_rek_akun->id)->all() as $_rek_kelompok)
                     @php
                         $jumlah_nilai_per_kelompok = $belanja_rka_pd->whereIn('rek_sub_rincian_objek_id', $rek_sub_rincian_objek->whereIn('rek_rincian_objek_id', $rek_rincian_objek->whereIn('rek_objek_id', $rek_objek->whereIn('rek_jenis_id', $rek_jenis->where('rek_kelompok_id', $_rek_kelompok->id)->pluck('id'))->pluck('id'))->pluck('id'))->pluck('id'))->sum('nilai');
-                        
+
                     @endphp
                     <tr style="font-weight: bold; background: #d4d4d4">
                         <td>{{ $_rek_kelompok->kode_lengkap }}</td>
@@ -165,7 +165,7 @@
                     @foreach ($rek_jenis->where('rek_kelompok_id', $_rek_kelompok->id)->all() as $_rek_jenis)
                         @php
                             $jumlah_nilai_per_jenis = $belanja_rka_pd->whereIn('rek_sub_rincian_objek_id', $rek_sub_rincian_objek->whereIn('rek_rincian_objek_id', $rek_rincian_objek->whereIn('rek_objek_id', $rek_objek->where('rek_jenis_id', $_rek_jenis->id)->pluck('id'))->pluck('id'))->pluck('id'))->sum('nilai');
-                            
+
                         @endphp
                         <tr style="font-weight: bold; background: #dedede">
                             <td>{{ $_rek_jenis->kode_lengkap }}</td>
@@ -193,7 +193,7 @@
                         @foreach ($rek_objek->where('rek_jenis_id', $_rek_jenis->id)->all() as $_rek_objek)
                             @php
                                 $jumlah_nilai_per_objek = $belanja_rka_pd->whereIn('rek_sub_rincian_objek_id', $rek_sub_rincian_objek->whereIn('rek_rincian_objek_id', $rek_rincian_objek->where('rek_objek_id', $_rek_objek->id)->pluck('id'))->pluck('id'))->sum('nilai');
-                                
+
                             @endphp
                             <tr style="font-weight: bold; background: #ececec">
                                 <td>{{ $_rek_objek->kode_lengkap }}</td>
@@ -222,7 +222,7 @@
                             @foreach ($rek_rincian_objek->where('rek_objek_id', $_rek_objek->id)->all() as $_rek_rincian_objek)
                                 @php
                                     $jumlah_nilai_per_rincian_objek = $belanja_rka_pd->whereIn('rek_sub_rincian_objek_id', $rek_sub_rincian_objek->whereIn('rek_rincian_objek_id', $_rek_rincian_objek->id)->pluck('id'))->sum('nilai');
-                                    
+
                                 @endphp
                                 <tr style="background: #fafafa">
                                     <td>{{ $_rek_rincian_objek->kode_lengkap }}</td>
@@ -302,7 +302,7 @@
                                                     0,00
                                                 @endif
                                             </td>
-                                            <td style="text-align: right;">
+                                            <td style="text-align: right; @if ($_belanja_rka_pd->nilai - ($_belanja_rka_pd->belanja_ls_sum_nilai + $_belanja_rka_pd->bukti_gu_sum_nilai) < 0)">
                                                 {{ number_format($_belanja_rka_pd->nilai - ($_belanja_rka_pd->belanja_ls_sum_nilai + $_belanja_rka_pd->bukti_gu_sum_nilai), 2, ',', '.') }}
                                             </td>
                                         </tr>
