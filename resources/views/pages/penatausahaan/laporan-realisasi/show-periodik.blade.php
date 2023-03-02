@@ -233,7 +233,8 @@
                                                     0,00
                                                 @endif
                                             </td>
-                                            <td style="text-align: right;">
+                                            <td
+                                                style="text-align: right; @if ($_belanja_rka_pd->nilai - ($_belanja_rka_pd->belanja_ls_sum_nilai + $_belanja_rka_pd->bukti_gu_sum_nilai) < 0) background: red; color: white; @endif">
                                                 {{ number_format($_belanja_rka_pd->nilai - ($_belanja_rka_pd->belanja_ls_sum_nilai + $_belanja_rka_pd->bukti_gu_sum_nilai), 2, ',', '.') }}
                                             </td>
                                         </tr>
