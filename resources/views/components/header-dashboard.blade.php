@@ -34,7 +34,7 @@
         </div>
         <div class="d-flex">
             <div class="dropdown d-inline-block">
-                <span class="font-weight-bold text-light"
+                {{-- <span class="font-weight-bold text-light"
                     id="digital-clock">{{ Carbon\Carbon::now()->isoFormat('HH:mm:ss') }}</span>
                 <script>
                     @if (env('DEBUGBAR_ENABLED') == 'true')
@@ -72,7 +72,7 @@
                             }, 1000)
                         });
                     @endif
-                </script>
+                </script> --}}
                 <button type="button" class="btn header-item" id="page-header-user-dropdown" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     <img class="rounded-circle header-profile-user" src="{{ asset('img/logo-rsjd.png') }}"
