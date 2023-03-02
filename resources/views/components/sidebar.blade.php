@@ -18,7 +18,7 @@
         <div id="sidebar-menu">
             <ul class="metismenu list-unstyled" id="sidebar"></ul>
         </div>
-        <div class="p-3">
+        {{-- <div class="p-3">
             <div class="card p-3 text-center">
                 <strong>
                     <h5>S i M K U - V{{ config('app.meta.version') }}</h5>
@@ -26,7 +26,7 @@
                 <p class="mb-3">Aplikasi Sistem Informasi Manajemen Keuangan RSJD Atma Husada Mahakam</p>
                 <a href="https://walid.id" class="btn btn-success btn-sm">SIMKU.ID</a>
             </div>
-        </div>
+        </div> --}}
     </div>
 </div>
 
