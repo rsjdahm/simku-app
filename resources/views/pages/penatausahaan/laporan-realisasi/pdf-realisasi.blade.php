@@ -111,7 +111,7 @@
                     $jumlah_nilai_per_akun = $belanja_rka_pd->whereIn('rek_sub_rincian_objek_id', $rek_sub_rincian_objek->whereIn('rek_rincian_objek_id', $rek_rincian_objek->whereIn('rek_objek_id', $rek_objek->whereIn('rek_jenis_id', $rek_jenis->whereIn('rek_kelompok_id', $rek_kelompok->where('rek_akun_id', $_rek_akun->id)->pluck('id'))->pluck('id'))->pluck('id'))->pluck('id'))->pluck('id'))->sum('nilai');
                     
                 @endphp
-                <tr style="font-weight: bold; background: #cbcbcb">
+                <tr style="font-weight: bold; background: #cbcbcb; border-bottom: 1px dotted black;">
                     <td>{{ $_rek_akun->kode_lengkap }}</td>
                     <td>{{ $_rek_akun->nama }}</td>
                     <td style="text-align: right;">{{ number_format($jumlah_nilai_per_akun, 2, ',', '.') }}
@@ -139,7 +139,7 @@
                         $jumlah_nilai_per_kelompok = $belanja_rka_pd->whereIn('rek_sub_rincian_objek_id', $rek_sub_rincian_objek->whereIn('rek_rincian_objek_id', $rek_rincian_objek->whereIn('rek_objek_id', $rek_objek->whereIn('rek_jenis_id', $rek_jenis->where('rek_kelompok_id', $_rek_kelompok->id)->pluck('id'))->pluck('id'))->pluck('id'))->pluck('id'))->sum('nilai');
                         
                     @endphp
-                    <tr style="font-weight: bold; background: #d4d4d4">
+                    <tr style="font-weight: bold; background: #d4d4d4; border-bottom: 1px dotted black;">
                         <td>{{ $_rek_kelompok->kode_lengkap }}</td>
                         <td style="padding-left: 0.25cm;">{{ $_rek_kelompok->nama }}</td>
                         <td style="text-align: right;">{{ number_format($jumlah_nilai_per_kelompok, 2, ',', '.') }}
@@ -167,7 +167,7 @@
                             $jumlah_nilai_per_jenis = $belanja_rka_pd->whereIn('rek_sub_rincian_objek_id', $rek_sub_rincian_objek->whereIn('rek_rincian_objek_id', $rek_rincian_objek->whereIn('rek_objek_id', $rek_objek->where('rek_jenis_id', $_rek_jenis->id)->pluck('id'))->pluck('id'))->pluck('id'))->sum('nilai');
                             
                         @endphp
-                        <tr style="font-weight: bold; background: #dedede">
+                        <tr style="font-weight: bold; background: #dedede; border-bottom: 1px dotted black;">
                             <td>{{ $_rek_jenis->kode_lengkap }}</td>
                             <td style="padding-left: 0.5cm;">{{ $_rek_jenis->nama }}</td>
                             <td style="text-align: right;">{{ number_format($jumlah_nilai_per_jenis, 2, ',', '.') }}
@@ -195,7 +195,7 @@
                                 $jumlah_nilai_per_objek = $belanja_rka_pd->whereIn('rek_sub_rincian_objek_id', $rek_sub_rincian_objek->whereIn('rek_rincian_objek_id', $rek_rincian_objek->where('rek_objek_id', $_rek_objek->id)->pluck('id'))->pluck('id'))->sum('nilai');
                                 
                             @endphp
-                            <tr style="font-weight: bold; background: #ececec">
+                            <tr style="font-weight: bold; background: #ececec; border-bottom: 1px dotted black;">
                                 <td>{{ $_rek_objek->kode_lengkap }}</td>
                                 <td style="padding-left: 0.75cm;">{{ $_rek_objek->nama }}</td>
                                 <td style="text-align: right;">
@@ -224,7 +224,7 @@
                                     $jumlah_nilai_per_rincian_objek = $belanja_rka_pd->whereIn('rek_sub_rincian_objek_id', $rek_sub_rincian_objek->whereIn('rek_rincian_objek_id', $_rek_rincian_objek->id)->pluck('id'))->sum('nilai');
                                     
                                 @endphp
-                                <tr style="background: #fafafa">
+                                <tr style="background: #fafafa; border-bottom: 1px dotted black;">
                                     <td>{{ $_rek_rincian_objek->kode_lengkap }}</td>
                                     <td style="padding-left: 1cm;">{{ $_rek_rincian_objek->nama }}</td>
                                     <td style="text-align: right;">
@@ -249,7 +249,7 @@
                                     </td>
                                 </tr>
                                 @foreach ($rek_sub_rincian_objek->where('rek_rincian_objek_id', $_rek_rincian_objek->id)->all() as $_rek_sub_rincian_objek)
-                                    <tr style="background: #f5f5f5">
+                                    <tr style="background: #f5f5f5; border-bottom: 1px dotted black;">
                                         <td>{{ $_rek_sub_rincian_objek->kode_lengkap }}</td>
                                         <td style="padding-left: 1.25cm;">{{ $_rek_sub_rincian_objek->nama }}</td>
                                         <td style="text-align: right;">
@@ -284,7 +284,7 @@
                                         @endphp
                                     </tr>
                                     @foreach ($belanja_rka_pd->where('rek_sub_rincian_objek_id', $_rek_sub_rincian_objek->id)->all() as $_belanja_rka_pd)
-                                        <tr style="background: #ffffff">
+                                        <tr style="background: #ffffff; border-bottom: 1px dotted black;">
                                             <td></td>
                                             <td style="padding-left: 1.5cm;">{{ $loop->iteration }}.
                                                 {{ $_belanja_rka_pd->uraian }}</td>
